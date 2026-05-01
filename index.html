@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
 <link href="https://fonts.googleapis.com/css2?family=Rye&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Rye&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/></noscript>
-<link rel="preload" as="image" href="img/hero-1.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-1.avif" fetchpriority="high">
 <script src="js/bundle.js" defer></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'"/>
@@ -112,10 +112,10 @@
   
   <!-- Slides de imágenes -->
   <div class="hero-slides absolute inset-0 z-[1]" id="hero-slides">
-    <div class="hero-slide active absolute inset-0"><img src="img/hero-1.jpg" alt="Barbero" width="800" height="900" loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover object-[center_top]"/></div>
-<div class="hero-slide absolute inset-0"><img src="img/hero-2.jpg" alt="Barbero experto" width="800" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_top]"/></div>
-<div class="hero-slide absolute inset-0"><img src="img/hero-3.jpg" alt="Barbería" width="800" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_top]"/></div>
-<div class="hero-slide absolute inset-0"><img src="img/hero-4.jpg" alt="Estilismo" width="800" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_top]"/></div>
+    <div class="hero-slide active absolute inset-0"><img src="img/hero-1.avif" alt="Barbero" width="800" height="900" loading="eager" fetchpriority="high" decoding="async" class="w-full h-full object-cover object-[center_top]"/></div>
+<div class="hero-slide absolute inset-0"><img src="img/hero-2.avif" alt="Barbero experto" width="800" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_top]"/></div>
+<div class="hero-slide absolute inset-0"><img src="img/hero-3.avif" alt="Barbería" width="800" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_top]"/></div>
+<div class="hero-slide absolute inset-0"><img src="img/hero-4.avif" alt="Estilismo" width="800" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_top]"/></div>
   </div>
   
   <!-- Video animado (inicialmente oculto) -->
@@ -1080,6 +1080,7 @@ function closeMapModal(){
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMapModal(); });
 </script>
 
+<script src="js/avatar.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>
