@@ -1,1353 +1,1274 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Learn2Barber</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{gold:'#bf7c1a','gold-lt':'#d4952a','gold-dk':'#9a6010',twht:'#f0ece4',tgry:'#8a8580'},fontFamily:{rye:['Rye','serif'],rally:['Raleway','sans-serif']}}}}</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
-<!-- Swiper (mobile carousel) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="team.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore | Electrónica y Accesorios - Tienda Online</title>
+    <meta name="description" content="TechStore: Tu tienda online de electrónica y accesorios en República Dominicana. Smartphones, laptops, audífonos, consolas y más. Envíos a todo el país.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techstore-lr.netlify.app/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TechStore | Electrónica y Accesorios - Tienda Online">
+    <meta property="og:description" content="Tu tienda online de electrónica y accesorios en República Dominicana. Smartphones, laptops, audífonos, consolas y más.">
+    <meta property="og:url" content="https://techstore-lr.netlify.app/">
+    <meta property="og:image" content="https://techstore-lr.netlify.app/img/fondo-1.avif">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TechStore | Electrónica y Accesorios - Tienda Online">
+    <meta name="twitter:description" content="Tu tienda online de electrónica y accesorios en República Dominicana.">
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <style>
+        /* Stars rating */
+        .stars { color: #f59e0b; letter-spacing: 1px; }
+        /* Product card image area */
+        .prod-img-wrap { background: var(--bg-secondary); }
+        /* Horizontal scroll product row */
+        .products-row { overflow-x: auto; scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+        .products-row::-webkit-scrollbar { height: 4px; }
+        .products-row::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 2px; }
+        /* News card hover */
+        .news-card img { transition: transform 0.4s ease; }
+        .news-card:hover img { transform: scale(1.05); }
+        /* Footer link hover */
+        .footer-link { transition: color 0.2s; }
+        .footer-link:hover { color: var(--accent-primary); }
+    </style>
 </head>
 <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[var(--accent-primary)] focus:text-black focus:font-bold focus:rounded focus:outline-none">Saltar al contenido principal</a>
+    <span id="main-content" class="sr-only"></span>
 
-<!-- SVG defs -->
-<svg style="display:none"><defs>
-  <symbol id="ico-ig" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></symbol>
-  <symbol id="ico-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
-  <symbol id="ico-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol>
-  <symbol id="ico-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
-  <symbol id="ico-arrow-r" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></symbol>
-  <symbol id="ico-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 6L6 18M6 6l12 12"/></symbol>
-</defs></svg>
+    <!-- ==================== HEADER ==================== -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-primary)]/95 backdrop-blur-md border-b border-[var(--border-color)]">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="orbitron text-2xl font-bold text-[var(--accent-primary)]">TECH</div>
+                    <div class="orbitron text-2xl font-bold" style="color: var(--text-primary);">STORE</div>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="nav-link font-medium text-sm tracking-wide" onclick="scrollToSection('#hero'); return false;">INICIO</a>
+                    <a href="#" class="nav-link font-medium text-sm tracking-wide" onclick="scrollToSection('#ofertas-section'); return false;">COLECCIONES</a>
+                    <a href="#" class="nav-link font-medium text-sm tracking-wide" onclick="scrollToSection('#product-section'); return false;">PRODUCTOS</a>
+                    <a href="tienda.html" class="nav-link font-medium text-sm tracking-wide">OFERTAS</a>
+                    <a href="https://wa.me/18098786115" target="_blank" class="nav-link font-medium text-sm tracking-wide">CONTACTO</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <div class="theme-toggle" onclick="toggleTheme()" role="button" tabindex="0" aria-label="Cambiar tema claro/oscuro">
+                        <div class="theme-toggle-slider"></div>
+                    </div>
+                    <button class="icon-btn hidden md:flex items-center space-x-2 text-sm" aria-label="Perfil de usuario">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </button>
+                    <button class="icon-btn hidden md:flex items-center space-x-2 text-sm" onclick="openCart()" aria-label="Abrir carrito de compras">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </button>
+                    <button class="md:hidden icon-btn" id="menuBtn" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<!-- ══ BACKDROP + NAV MENU ══ -->
-<div class="nav-menu-backdrop fixed inset-0 z-[185] bg-black/[.72] backdrop-blur-[3px] opacity-0 pointer-events-none transition-opacity duration-[450ms]" id="nav-backdrop"></div>
-<nav class="nav-menu fixed top-0 right-0 bottom-0 z-[190] w-[min(420px,100vw)] bg-[#0a0907] transition-transform duration-[450ms] ease-[cubic-bezier(.77,0,.18,1)] flex flex-col overflow-hidden" id="nav-menu">
-  <div class="nav-menu-deco absolute right-[-10px] bottom-[60px] font-rye text-[9rem] text-[rgba(191,124,26,.04)] leading-none pointer-events-none z-0 select-none">L2B</div>
-  <div class="relative z-[2] flex items-center justify-between px-9 pt-7">
-    <img src="img/logo.png" alt="Learn2Barber" class="h-10 w-auto opacity-85" onerror="this.style.display='none'"/>
-  </div>
-  <div class="nav-menu-links relative z-[2] flex-1 flex flex-col justify-center px-9">
-    <a href="#hero" onclick="closeMenu()" class="relative flex items-baseline gap-[14px] no-underline py-[11px] border-b border-[rgba(191,124,26,.06)] overflow-hidden first:border-t first:border-[rgba(191,124,26,.06)]"><span class="nav-num font-rye text-[.48rem] text-[rgba(191,124,26,.28)] flex-shrink-0 transition-colors duration-200">01</span><span class="nav-label font-rally font-extrabold text-[clamp(.88rem,2.2vw,1.1rem)] tracking-[.15em] uppercase text-[rgba(240,235,225,.55)] transition-colors duration-[250ms]">Home</span></a>
-    <a href="#about" onclick="closeMenu()" class="relative flex items-baseline gap-[14px] no-underline py-[11px] border-b border-[rgba(191,124,26,.06)] overflow-hidden"><span class="nav-num font-rye text-[.48rem] text-[rgba(191,124,26,.28)] flex-shrink-0 transition-colors duration-200">02</span><span class="nav-label font-rally font-extrabold text-[clamp(.88rem,2.2vw,1.1rem)] tracking-[.15em] uppercase text-[rgba(240,235,225,.55)] transition-colors duration-[250ms]">About Us</span></a>
-    <a href="#services" onclick="closeMenu()" class="relative flex items-baseline gap-[14px] no-underline py-[11px] border-b border-[rgba(191,124,26,.06)] overflow-hidden"><span class="nav-num font-rye text-[.48rem] text-[rgba(191,124,26,.28)] flex-shrink-0 transition-colors duration-200">03</span><span class="nav-label font-rally font-extrabold text-[clamp(.88rem,2.2vw,1.1rem)] tracking-[.15em] uppercase text-[rgba(240,235,225,.55)] transition-colors duration-[250ms]">Services</span></a>
-    <a href="#portfolio" onclick="closeMenu()" class="relative flex items-baseline gap-[14px] no-underline py-[11px] border-b border-[rgba(191,124,26,.06)] overflow-hidden"><span class="nav-num font-rye text-[.48rem] text-[rgba(191,124,26,.28)] flex-shrink-0 transition-colors duration-200">04</span><span class="nav-label font-rally font-extrabold text-[clamp(.88rem,2.2vw,1.1rem)] tracking-[.15em] uppercase text-[rgba(240,235,225,.55)] transition-colors duration-[250ms]">Gallery</span></a>
-    <a href="#team" onclick="closeMenu()" class="relative flex items-baseline gap-[14px] no-underline py-[11px] border-b border-[rgba(191,124,26,.06)] overflow-hidden"><span class="nav-num font-rye text-[.48rem] text-[rgba(191,124,26,.28)] flex-shrink-0 transition-colors duration-200">05</span><span class="nav-label font-rally font-extrabold text-[clamp(.88rem,2.2vw,1.1rem)] tracking-[.15em] uppercase text-[rgba(240,235,225,.55)] transition-colors duration-[250ms]">Our Team</span></a>
-    <a href="#location" onclick="closeMenu()" class="relative flex items-baseline gap-[14px] no-underline py-[11px] border-b border-[rgba(191,124,26,.06)] overflow-hidden"><span class="nav-num font-rye text-[.48rem] text-[rgba(191,124,26,.28)] flex-shrink-0 transition-colors duration-200">06</span><span class="nav-label font-rally font-extrabold text-[clamp(.88rem,2.2vw,1.1rem)] tracking-[.15em] uppercase text-[rgba(240,235,225,.55)] transition-colors duration-[250ms]">Location</span></a>
-    <a href="#contact" onclick="closeMenu()" class="relative flex items-baseline gap-[14px] no-underline py-[11px] border-b border-[rgba(191,124,26,.06)] overflow-hidden"><span class="nav-num font-rye text-[.48rem] text-[rgba(191,124,26,.28)] flex-shrink-0 transition-colors duration-200">07</span><span class="nav-label font-rally font-extrabold text-[clamp(.88rem,2.2vw,1.1rem)] tracking-[.15em] uppercase text-[rgba(240,235,225,.55)] transition-colors duration-[250ms]">Contact</span></a>
-  </div>
-  <div class="relative z-[2] px-9 pt-6 pb-8 border-t border-[rgba(191,124,26,.1)]">
-    <a href="https://wa.me/18098786115" target="_blank" rel="noopener" class="flex items-center justify-center gap-[10px] w-full py-[14px] bg-[rgba(37,211,102,.08)] border border-[rgba(37,211,102,.28)] text-[rgba(37,211,102,.88)] font-rally text-[.7rem] font-bold tracking-[.14em] uppercase no-underline transition-all duration-[250ms] mb-[18px] hover:bg-[rgba(37,211,102,.16)] hover:border-[rgba(37,211,102,.5)] hover:text-[#25d366]">
-      <svg width="15" height="15"><use href="#ico-wa"/></svg>Chat on WhatsApp
-    </a>
-    <div class="flex items-center gap-2">
-      <span class="font-rally text-[.56rem] text-[rgba(191,124,26,.35)] tracking-[.12em] uppercase mr-1">Follow</span>
-      <a href="#" class="w-[30px] h-[30px] border border-[rgba(191,124,26,.2)] flex items-center justify-center text-[rgba(191,124,26,.45)] no-underline transition-all duration-200 hover:border-gold hover:text-gold"><svg width="11" height="11"><use href="#ico-fb"/></svg></a>
-      <a href="#" class="w-[30px] h-[30px] border border-[rgba(191,124,26,.2)] flex items-center justify-center text-[rgba(191,124,26,.45)] no-underline transition-all duration-200 hover:border-gold hover:text-gold"><svg width="11" height="11"><use href="#ico-ig"/></svg></a>
-      <a href="#" class="w-[30px] h-[30px] border border-[rgba(191,124,26,.2)] flex items-center justify-center text-[rgba(191,124,26,.45)] no-underline transition-all duration-200 hover:border-gold hover:text-gold"><svg width="12" height="12"><use href="#ico-yt"/></svg></a>
+    <!-- ==================== MENÚ MÓVIL ==================== -->
+    <div class="mobile-menu fixed top-0 left-0 w-64 h-full bg-[var(--bg-secondary)] z-40 shadow-2xl md:hidden" id="mobileMenu">
+        <div class="p-6">
+            <button class="mb-8" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <nav class="flex flex-col space-y-4">
+                <a href="#" class="nav-link font-medium text-base" onclick="scrollToSection('#hero'); toggleMobileMenu(); return false;">INICIO</a>
+                <a href="#" class="nav-link font-medium text-base" onclick="scrollToSection('#ofertas-section'); toggleMobileMenu(); return false;">COLECCIONES</a>
+                <a href="#" class="nav-link font-medium text-base" onclick="scrollToSection('#product-section'); toggleMobileMenu(); return false;">PRODUCTOS</a>
+                <a href="tienda.html" class="nav-link font-medium text-base">OFERTAS</a>
+            </nav>
+            <a href="https://wa.me/18098786115" target="_blank" class="mt-8 flex items-center space-x-2 px-4 py-2 rounded-lg bg-green-600 text-white">
+                <i class="fab fa-whatsapp text-base"></i>
+                <span>+1 809-878-6115</span>
+            </a>
+        </div>
     </div>
-  </div>
-</nav>
 
-<!-- ══ HEADER ══ -->
-<header class="fixed top-0 left-0 right-0 z-[200] h-[70px] flex items-center justify-between px-[4%] bg-transparent pointer-events-none transition-[background] duration-300" id="site-header">
-  <div class="pointer-events-auto"></div>
-  <div class="flex items-center gap-[14px] pointer-events-auto">
-    <span class="text-[rgba(240,235,225,.88)] cursor-pointer transition-colors duration-[180ms] flex items-center hover:text-gold"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-    <span class="text-[rgba(240,235,225,.88)] cursor-pointer transition-colors duration-[180ms] flex items-center hover:text-gold"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-    <div class="hamburger flex flex-col gap-[5px] cursor-pointer py-0.5 pointer-events-auto" id="hamburger-btn" aria-expanded="false"><span></span><span></span><span></span></div>
-  </div>
-</header>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-section relative" id="hero" style="height: 100svh; min-height: 600px; padding-top: 65px;">
+        <div class="h-full w-full px-0 md:px-4 lg:px-6">
+            <div class="grid grid-cols-12 gap-0 md:gap-4 h-full">
+                <!-- MAIN HERO (SLIDER) -->
+                <div class="main-hero col-span-12 md:col-span-7 relative overflow-hidden md:rounded-r-none lg:rounded-r-2xl clip-animate h-full">
+                    <div class="slider-container absolute inset-0">
+                        <div class="hero-slide active"><img src="img/fondo-1.avif" alt="Accesorios Gaming" class="w-full h-full object-cover"></div>
+                        <div class="hero-slide"><img src="img/fondo-2.avif" alt="Tecnología Premium" class="w-full h-full object-cover"></div>
+                        <div class="hero-slide"><img src="img/fondo-3.avif" alt="Electrónica Avanzada" class="w-full h-full object-cover"></div>
+                        <div class="hero-slide"><img src="img/fondo-4.avif" alt="Nuevo Producto" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="hero-content absolute inset-0 flex flex-col justify-end pb-16 md:pb-24 px-8 md:px-12">
+                        <div class="hero-text-content">
+                            <p class="hero-subtitle text-[var(--accent-primary)] text-xs tracking-[0.3em] font-medium mb-3 uppercase opacity-0">Tecnología Premium</p>
+                            <h1 class="hero-title orbitron text-white text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-shadow opacity-0">ACCESORIOS<br>GAMING PRO</h1>
+                            <p class="hero-description text-white/90 text-sm md:text-base mb-8 max-w-md leading-relaxed opacity-0">Descubre la mejor selección de tecnología y accesorios para llevar tu experiencia al siguiente nivel</p>
+                            <button class="hero-btn btn-shop px-6 py-2 text-white font-semibold text-xs uppercase rounded-lg opacity-0" onclick="scrollToSection('#product-section');">EXPLORAR AHORA</button>
+                        </div>
+                        <div class="dots-container absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3">
+                            <div class="dot active" data-slide="0"></div>
+                            <div class="dot" data-slide="1"></div>
+                            <div class="dot" data-slide="2"></div>
+                            <div class="dot" data-slide="3"></div>
+                        </div>
+                    </div>
+                </div>
 
-<!-- ══ HERO ══ -->
-<section class="hero relative w-full h-screen min-h-[580px] overflow-hidden bg-[#0a0908]" id="hero">
-  <div class="absolute inset-0 z-[3] pointer-events-none bg-[radial-gradient(ellipse_100%_90%_at_50%_50%,transparent_38%,rgba(5,4,3,.6)_100%)]"></div>
-  <div class="hero-slides absolute inset-0 z-[1]" id="hero-slides">
-    <div class="hero-slide active absolute inset-0"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1400&q=85" alt="Barber" class="w-full h-full object-cover object-[center_top]"/></div>
-    <div class="hero-slide absolute inset-0"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1400&q=85" alt="Expert barber" class="w-full h-full object-cover object-[center_top]"/></div>
-    <div class="hero-slide absolute inset-0"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1400&q=85" alt="Barbershop" class="w-full h-full object-cover object-[center_top]"/></div>
-    <div class="hero-slide absolute inset-0"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=1400&q=85" alt="Hair styling" class="w-full h-full object-cover object-[center_top]"/></div>
-  </div>
-  <div class="absolute top-[22px] left-[4%] z-[10]"><img src="img/logo.png" alt="Learn2Barber" class="h-[clamp(56px,8vw,78px)] w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,.6)]" onerror="this.style.display='none'"/></div>
-  <svg class="absolute top-[28px] right-[7%] z-[6] w-[80px] h-[64px] pointer-events-none" viewBox="0 0 90 70" fill="none"><path d="M10 55 Q25 5 75 15" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55"/><path d="M32 62 Q50 40 80 42" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".35"/><circle cx="82" cy="13" r="1.4" fill="white" opacity=".45"/></svg>
-  <div class="absolute right-[18px] top-1/2 -translate-y-1/2 z-[10] flex flex-col items-center gap-2" id="slide-dots">
-    <div class="slide-dot w-[7px] h-[7px] rounded-full bg-[rgba(130,115,100,.4)] border border-[rgba(180,160,130,.25)] transition-all duration-300 cursor-pointer active"></div>
-    <div class="slide-dot w-[7px] h-[7px] rounded-full bg-[rgba(130,115,100,.4)] border border-[rgba(180,160,130,.25)] transition-all duration-300 cursor-pointer"></div>
-    <div class="slide-dot w-[7px] h-[7px] rounded-full bg-[rgba(130,115,100,.4)] border border-[rgba(180,160,130,.25)] transition-all duration-300 cursor-pointer"></div>
-    <div class="slide-dot w-[7px] h-[7px] rounded-full bg-[rgba(130,115,100,.4)] border border-[rgba(180,160,130,.25)] transition-all duration-300 cursor-pointer"></div>
-  </div>
-  <div class="absolute bottom-0 left-0 right-0 z-[10] h-[2px] bg-white/[.08]"><div class="h-full bg-gradient-to-r from-gold-dk to-gold w-0" id="progress-bar"></div></div>
-  <div class="hero-content absolute top-0 left-0 w-[52%] h-full z-[5] flex flex-col justify-center pt-[70px] pl-[5%]">
-    <svg class="block mb-1 w-[60px] h-[34px]" viewBox="0 0 80 40" fill="none"><path d="M8 30 C10 18,20 8,32 12 C38 14,40 20,36 24 C30 30,20 26,22 18 C24 12,34 10,44 14 C56 19,64 12,70 6" stroke="#bf7c1a" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M6 32 C4 35,6 38,10 36" stroke="#bf7c1a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-    <div class="flex gap-[5px] items-center mb-1.5"><span class="w-[3px] h-[3px] rounded-full bg-white/[.38] block"></span><span class="w-[3px] h-[3px] rounded-full bg-white/[.38] block"></span><span class="w-[3px] h-[3px] rounded-full bg-white/[.38] block"></span></div>
-    <h1 class="font-rye leading-[1.02] tracking-[.01em]">
-      <span class="block text-[#f0ece0] text-[clamp(2rem,5.5vw,4.6rem)] [text-shadow:3px_3px_0_rgba(0,0,0,.75)]">YOUR HAIR</span>
-      <span class="line-gold block text-[clamp(2rem,5.5vw,4.6rem)]">DESERVES</span>
-      <span class="line-gold block text-[clamp(2rem,5.5vw,4.6rem)]">THE BEST.</span>
-    </h1>
-    <div class="hero-buttons flex items-center gap-[18px] mt-[clamp(18px,3vh,30px)]">
-      <button class="font-rally font-semibold text-[clamp(.58rem,.9vw,.72rem)] tracking-[.14em] uppercase text-white bg-transparent border border-white/70 px-[clamp(14px,2vw,22px)] py-[clamp(8px,1.2vh,11px)] cursor-pointer transition-all duration-200 whitespace-nowrap hover:bg-white/[.09] hover:border-white" onclick="smoothTo('contact')">Get In Touch</button>
-      <button class="flex items-center gap-[10px] cursor-pointer bg-none border-none p-0" onclick="smoothTo('videos-section')">
-        <div class="w-[clamp(34px,4vw,42px)] h-[clamp(34px,4vw,42px)] rounded-full bg-gold flex items-center justify-center flex-shrink-0 shadow-[0_0_0_4px_rgba(191,124,26,.22)] transition-all duration-200 hover:bg-gold-lt hover:shadow-[0_0_0_6px_rgba(191,124,26,.28)]"><div class="w-0 h-0 border-y-[6px] border-y-transparent border-l-[11px] border-l-[#0a0908] ml-0.5"></div></div>
-        <span class="font-rally font-normal text-[clamp(.6rem,.85vw,.78rem)] tracking-[.1em] uppercase text-white">Play Video</span>
-      </button>
+                <!-- SIDE CARDS (solo escritorio) -->
+                <div class="side-cards hidden md:flex col-span-5 flex-col gap-4 pr-0">
+                    <!-- Card 1 -->
+                    <div class="card-1 relative overflow-hidden rounded-l-2xl rounded-r-none flex-1 group cursor-pointer clip-animate">
+                        <img src="img/fondo-6.avif" alt="Auriculares Premium" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white">
+                            <p class="text-xs tracking-[.2em] font-medium mb-2 uppercase" style="color:var(--accent-primary)">Asistentes Voz</p> <h3 class="orbitron text-2xl font-bold" style="text-shadow:0 2px 10px rgba(0,0,0,.5)">ALTA VOZ <br>INTELIGENTE</h3>
+                            <div class="card-1-cta mt-4 flex items-center space-x-2 opacity-0">
+                                <a href="tienda.html?filter=audio" class="text-sm opacity-90" onclick="navigateWithFilter('tienda.html?filter=audio'); return false;">Ver más</a>
+                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="card-2-fixed relative overflow-hidden rounded-l-2xl rounded-r-none flex-1 group cursor-pointer clip-animate">
+                        <img src="img/fondo-5.avif" alt="Smart Speaker" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent"></div>
+                        <div class="relative h-full flex flex-col justify-end p-8 text-white">
+                            <p class="text-xs tracking-[.2em] font-medium mb-2 uppercase" style="color:var(--accent-primary)">Smart Home</p> <h3 class="orbitron text-2xl font-bold" style="text-shadow:0 2px 10px rgba(0,0,0,.5)">Laptop HP<br>Intel Core i7</h3>
+                            <div class="card-2-cta mt-4 flex items-center space-x-2 opacity-0">
+                                <a href="tienda.html?filter=audio" class="text-sm opacity-90" onclick="navigateWithFilter('tienda.html?filter=audio'); return false;">Ver más</a>
+                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CATEGORÍAS ==================== -->
+    <section id="categories-section" class="py-14 px-6 overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="container mx-auto">
+        <div class="flex flex-col md:items-center gap-4 mb-12 text-left md:text-center">
+            <div class="space-y-2">
+                <p class="text-xs tracking-[0.3em] font-bold uppercase" style="color: var(--accent-primary);">Explora Nuestra Tienda</p>
+                <h2 class="orbitron text-2xl md:text-4xl font-black" style="color: var(--text-primary);">ENCUENTRA LO QUE BUSCAS</h2>
+            </div>
+        </div>
+
+        <div class="categories-scroll overflow-x-auto overflow-y-hidden" style="scrollbar-width: none; -ms-overflow-style: none;">
+            <div class="flex gap-6 pb-4 items-start md:justify-center" id="categoriesContainer">
+                </div>
+        <div class="hidden md:block mt-10 h-px" style="background: linear-gradient(to right, transparent, var(--accent-primary), transparent); opacity: 0.2;"></div>
     </div>
-  </div>
 </section>
-
-<!-- ══ ABOUT ══ -->
-<section class="bg-[#0d0c0a] py-[110px] px-[6%] relative overflow-hidden" id="about">
-  <div class="absolute inset-0 pointer-events-none z-0 opacity-[.07]" style="background-image:var(--grunge);background-size:300px;"></div>
-  <div class="relative z-10 max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-center">
-    <div class="relative pt-6 pl-6 self-stretch flex flex-col justify-center max-w-[420px] mx-auto md:mx-0 g-left">
-      <div class="absolute top-0 left-0 w-[calc(100%-24px)] h-[calc(100%-16px)] border border-gold z-0 pointer-events-none"></div>
-      <div class="relative z-10 overflow-hidden">
-        <img src="img/guiño.png" alt="Expert barber" class="block w-full object-cover object-top shadow-2xl grayscale contrast-[1.08] brightness-[0.88] min-h-[300px] max-h-[420px]" onerror="this.src='https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=700&q=80'"/>
-      </div>
-    </div>
-    <div class="flex flex-col justify-center g-right">
-      <div class="flex items-center gap-3 mb-1">
-        <svg width="26" height="20" viewBox="0 0 28 22" fill="none"><path d="M4 18 L22 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"></path><path d="M24 18 L6 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"></path><circle cx="14" cy="11" r="1.8" fill="#c9901d"></circle><path d="M11 19 L14 22 L17 19" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 3 L14 1 L18 3" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        <h2 class="font-rally font-extrabold uppercase tracking-wide leading-none text-[clamp(1.6rem,3vw,2.3rem)]"><span class="text-twht">YOUR </span><em class="font-rye gold-text-gradient not-italic">NEW</em></h2>
-      </div>
-      <h2 class="font-rally font-extrabold uppercase tracking-wide leading-none text-twht text-[clamp(1.6rem,3vw,2.3rem)] mb-5 pl-[38px]">PERFECT STYLE</h2>
-      <p class="font-rally text-[0.82rem] leading-[1.8] text-tgry max-w-[420px] mb-4">Discover the art of professional grooming where every cut is a masterpiece. We combine classic techniques with modern trends to deliver an experience designed for the modern gentleman.</p>
-      <p class="font-rally text-[0.82rem] leading-[1.8] text-tgry max-w-[420px] mb-8">Our philosophy is simple: great hair starts with great technique. Precision cuts, clean fades, expert shaping. This is your new perfect style — and it starts here.</p>
-      <div><button class="font-rally font-medium text-[0.72rem] tracking-[.14em] uppercase text-white bg-transparent border border-white/60 px-8 py-3 cursor-pointer transition-all duration-200 hover:bg-white/[.07] hover:border-white">Read More</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SERVICES ══ -->
-<section class="relative overflow-hidden bg-[#0a0908]" id="services">
-  <div class="services-bg-img absolute inset-0 z-0"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1400&q=85" alt="" class="w-full h-full object-cover grayscale brightness-[.16] contrast-[1.2]"/></div>
-  <div class="services-inner relative z-[2] max-w-[1200px] mx-auto py-[120px] px-[6%] grid grid-cols-2 gap-[80px] items-center">
-    <div class="services-left">
-      <h2 class="services-big-title font-rye text-[clamp(2.8rem,6vw,5.5rem)] leading-[.92] text-twht mb-6 g-up">THE ART<br/>OF THE<em>PERFECT<br/>CUT.</em></h2>
-      <p class="font-rally text-[.85rem] leading-[1.9] text-tgry max-w-[400px] mb-[38px] g-up">From razor-sharp fades to masterclass beard grooming — our craft is built on discipline, precision, and decades of refined technique. This is barbering elevated to an art form.</p>
-      <button class="services-cta inline-flex items-center gap-[14px] font-rally text-[.68rem] font-bold tracking-[.2em] uppercase text-gold cursor-pointer bg-none border-none p-0 transition-[gap] duration-300 g-up" onclick="smoothTo('contact')">Book Your Appointment<svg width="18" height="18"><use href="#ico-arrow-r"/></svg></button>
-    </div>
-    <div class="flex flex-col">
-      <div class="service-item flex items-center border-b border-[rgba(191,124,26,.1)] border-t border-[rgba(191,124,26,.1)] py-[22px] gap-7 relative overflow-hidden cursor-default g-right"><div class="service-num font-rye text-[clamp(1.8rem,3vw,2.6rem)] text-[rgba(191,124,26,.12)] leading-none flex-shrink-0 w-14 text-right transition-colors duration-300">01</div><div class="flex flex-col"><div class="service-name font-rally font-extrabold text-[.9rem] tracking-[.14em] uppercase text-twht mb-1 transition-colors duration-300">Precision Haircut</div><div class="font-rally text-[.74rem] text-tgry leading-[1.5]">Classic cuts, modern fades, tailor-made to your face shape.</div></div></div>
-      <div class="service-item flex items-center border-b border-[rgba(191,124,26,.1)] py-[22px] gap-7 relative overflow-hidden cursor-default g-right"><div class="service-num font-rye text-[clamp(1.8rem,3vw,2.6rem)] text-[rgba(191,124,26,.12)] leading-none flex-shrink-0 w-14 text-right transition-colors duration-300">02</div><div class="flex flex-col"><div class="service-name font-rally font-extrabold text-[.9rem] tracking-[.14em] uppercase text-twht mb-1 transition-colors duration-300">Hot Towel Shave</div><div class="font-rally text-[.74rem] text-tgry leading-[1.5]">Straight-razor luxury — the closest, smoothest shave you've ever had.</div></div></div>
-      <div class="service-item flex items-center border-b border-[rgba(191,124,26,.1)] py-[22px] gap-7 relative overflow-hidden cursor-default g-right"><div class="service-num font-rye text-[clamp(1.8rem,3vw,2.6rem)] text-[rgba(191,124,26,.12)] leading-none flex-shrink-0 w-14 text-right transition-colors duration-300">03</div><div class="flex flex-col"><div class="service-name font-rally font-extrabold text-[.9rem] tracking-[.14em] uppercase text-twht mb-1 transition-colors duration-300">Beard Sculpting</div><div class="font-rally text-[.74rem] text-tgry leading-[1.5]">Detail work, line-ups, and sculpting that frames your face with authority.</div></div></div>
-      <div class="service-item flex items-center border-b border-[rgba(191,124,26,.1)] py-[22px] gap-7 relative overflow-hidden cursor-default g-right"><div class="service-num font-rye text-[clamp(1.8rem,3vw,2.6rem)] text-[rgba(191,124,26,.12)] leading-none flex-shrink-0 w-14 text-right transition-colors duration-300">04</div><div class="flex flex-col"><div class="service-name font-rally font-extrabold text-[.9rem] tracking-[.14em] uppercase text-twht mb-1 transition-colors duration-300">Hair Styling</div><div class="font-rally text-[.74rem] text-tgry leading-[1.5]">Pompadours, textured styling, and modern looks sealed with premium product.</div></div></div>
-      <div class="service-item flex items-center border-b border-[rgba(191,124,26,.1)] py-[22px] gap-7 relative overflow-hidden cursor-default g-right"><div class="service-num font-rye text-[clamp(1.8rem,3vw,2.6rem)] text-[rgba(191,124,26,.12)] leading-none flex-shrink-0 w-14 text-right transition-colors duration-300">05</div><div class="flex flex-col"><div class="service-name font-rally font-extrabold text-[.9rem] tracking-[.14em] uppercase text-twht mb-1 transition-colors duration-300">Online Barber Course</div><div class="font-rally text-[.74rem] text-tgry leading-[1.5]">Learn professional barbering from home. Certify. Launch your career.</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ GALLERY ══ -->
-<section class="bg-[#0d0c0a] py-[110px] px-[6%] relative overflow-hidden" id="portfolio">
-  <div class="absolute inset-0 pointer-events-none z-0 opacity-[.07]" style="background-image:var(--grunge);background-size:300px;"></div>
-  <div class="relative z-[1] max-w-[1140px] mx-auto">
-    <div class="portfolio-header mb-[52px] lg:text-center">
-  <!-- Versión mobile: flex con número a la derecha -->
-  <div class="flex lg:hidden items-start justify-between gap-5">
-    <div class="flex items-center gap-[10px] flex-wrap">
-      <svg width="26" height="20" viewBox="0 0 28 22" fill="none" class="shrink-0"><path d="M4 18 L22 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"/><path d="M24 18 L6 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"/><circle cx="14" cy="11" r="1.8" fill="#c9901d"/><path d="M11 19 L14 22 L17 19" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 3 L14 1 L18 3" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <h2 class="font-rally font-extrabold text-[clamp(1.5rem,3vw,2.1rem)] tracking-[.05em] uppercase text-twht leading-none">OUR <span class="word-gold">GALLERY</span></h2>
-    </div>
-    <div class="nnum text-[#c9901d] font-rally font-bold text-[1.2rem] leading-none">03</div>
-  </div>
-  
-  <!-- Versión desktop: exactamente tu código original -->
-  <div class="hidden lg:block">
-    <div class="inline-flex items-center gap-[10px] mb-1.5 badge-row">
-      <svg width="26" height="20" viewBox="0 0 28 22" fill="none"><path d="M4 18 L22 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"/><path d="M24 18 L6 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"/><circle cx="14" cy="11" r="1.8" fill="#c9901d"/><path d="M11 19 L14 22 L17 19" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 3 L14 1 L18 3" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <h2 class="font-rally font-extrabold text-[clamp(1.5rem,3vw,2.1rem)] tracking-[.05em] uppercase text-twht leading-none">OUR <span class="word-gold">GALLERY</span></h2>
-    </div>
-    <div class="gold-rule-center w-11 h-0.5 bg-gold mx-auto mt-3"></div>
-  </div>
-  
-  <!-- Subtítulo Master Barbers solo en mobile -->
-  <p class="lg:hidden text-[#c9901d] text-[.65rem] tracking-[.28em] uppercase font-semibold mt-3 flex items-center gap-2"><span class="inline-block w-6 h-px bg-[#c9901d] opacity-70"></span>Master Barbers</p>
-  
-  <!-- Texto descriptivo (igual en ambos) -->
-  <p class="font-rally text-[.8rem] text-tgry leading-[1.7] lg:text-center lg:mx-auto lg:max-w-[480px] mt-[14px]">A showcase of precision cuts, masterful fades, and artful grooming — every photo a testament to our craft.</p>
-</div>
-
-    <div class="pf-filters-track mb-8">
-      <div class="portfolio-filters flex gap-1.5 flex-nowrap sm:justify-center">
-        <button class="filter-btn active font-rally text-[.65rem] font-bold tracking-[.18em] uppercase text-tgry bg-transparent border border-[#2a2724] px-[18px] py-2 cursor-pointer transition-all duration-[250ms] whitespace-nowrap flex-shrink-0" data-filter="all">All</button>
-        <button class="filter-btn font-rally text-[.65rem] font-bold tracking-[.18em] uppercase text-tgry bg-transparent border border-[#2a2724] px-[18px] py-2 cursor-pointer transition-all duration-[250ms] whitespace-nowrap flex-shrink-0" data-filter="haircut">Haircut</button>
-        <button class="filter-btn font-rally text-[.65rem] font-bold tracking-[.18em] uppercase text-tgry bg-transparent border border-[#2a2724] px-[18px] py-2 cursor-pointer transition-all duration-[250ms] whitespace-nowrap flex-shrink-0" data-filter="shaving">Shaving</button>
-        <button class="filter-btn font-rally text-[.65rem] font-bold tracking-[.18em] uppercase text-tgry bg-transparent border border-[#2a2724] px-[18px] py-2 cursor-pointer transition-all duration-[250ms] whitespace-nowrap flex-shrink-0" data-filter="styling">Styling</button>
-        <button class="filter-btn font-rally text-[.65rem] font-bold tracking-[.18em] uppercase text-tgry bg-transparent border border-[#2a2724] px-[18px] py-2 cursor-pointer transition-all duration-[250ms] whitespace-nowrap flex-shrink-0" data-filter="trimming">Trimming</button>
-      </div>
-    </div>
-
-    <div class="gallery-grid grid grid-cols-3 gap-1.5" id="gallery-grid"></div>
-
-    <div class="see-more-wrap text-center mt-9">
-      <button id="load-more-btn" class="load-more-btn font-rally font-bold text-[.72rem] tracking-[.18em] uppercase relative overflow-hidden" style="color:#c9901d;background:transparent;border:1px solid rgba(191,124,26,.5);padding:13px 36px;cursor:pointer;display:inline-block;transition:color .28s;letter-spacing:.18em;"><span class="relative z-[1]" style="transition:color .28s;">Ver más</span></button>
-    </div>
-  </div>
-</section>
-
-<div class="pf-lightbox" id="pf-lightbox" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="pf-lb-backdrop"></div>
-  <div class="pf-lb-progress" id="pf-lb-progress-bar"></div>
-  <button class="pf-lb-close" id="pf-lb-close" aria-label="Close"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><line x1="1" y1="1" x2="17" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17" y1="1" x2="1" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-  <button class="pf-lb-arrow pf-lb-prev" id="pf-lb-prev" aria-label="Previous"><svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M9 1L1 9L9 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <div class="pf-lb-stage" id="pf-lb-stage"><div class="pf-lb-img-wrap" id="pf-lb-img-wrap"><img src="" alt="" id="pf-lb-img" draggable="false"/></div></div>
-  <button class="pf-lb-arrow pf-lb-next" id="pf-lb-next" aria-label="Next"><svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M1 1L9 9L1 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <div class="pf-lb-footer">
-    <div class="pf-lb-meta"><span class="pf-lb-cat" id="pf-lb-cat"></span><span class="pf-lb-counter" id="pf-lb-counter"></span></div>
-    <div class="pf-lb-controls">
-      <button class="pf-lb-zoom-btn" id="pf-lb-zoom-in" title="Zoom in"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="10.5" y1="10.5" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="6.5" y1="4" x2="6.5" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="6.5" x2="9" y2="6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-      <button class="pf-lb-zoom-btn" id="pf-lb-zoom-out" title="Zoom out"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><line x1="10.5" y1="10.5" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="6.5" x2="9" y2="6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-      <div class="pf-lb-divider"></div>
-      <button class="pf-lb-play-btn" id="pf-lb-autoplay" title="Autoplay"><svg class="pf-lb-play-icon" width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M1 1L13 8L1 15V1Z" fill="currentColor"/></svg><svg class="pf-lb-pause-icon" width="14" height="16" viewBox="0 0 14 16" fill="none" style="display:none"><rect x="1" y="1" width="4" height="14" rx="1" fill="currentColor"/><rect x="9" y="1" width="4" height="14" rx="1" fill="currentColor"/></svg></button>
-      <div class="pf-lb-speed-wrap"><button class="pf-lb-speed-btn" id="pf-lb-speed-btn">1×</button><div class="pf-lb-speed-menu" id="pf-lb-speed-menu"><button class="pf-lb-speed-opt" data-speed="6000">0.5×</button><button class="pf-lb-speed-opt active" data-speed="3000">1×</button><button class="pf-lb-speed-opt" data-speed="1500">2×</button><button class="pf-lb-speed-opt" data-speed="800">3×</button></div></div>
-    </div>
-  </div>
-</div>
 
 <style>
-  .pf-filters-track{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}.pf-filters-track::-webkit-scrollbar{display:none;}@media (max-width:640px){#portfolio{padding-left:4%;padding-right:4%;}}.filter-btn.active{color:#0e0d0b;background:#c9901d;border-color:#c9901d;}#gallery-grid{grid-auto-rows:220px;}@media (max-width:640px){#gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px;}}.gallery-item{position:relative;overflow:hidden;cursor:pointer;background:#1a1815;opacity:0;transform:scale(.96) translateY(12px);transition:opacity .45s,transform .45s;}.gallery-item.visible{opacity:1;transform:scale(1) translateY(0);}.gallery-item img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 600ms;will-change:transform;}.gallery-item:hover img{transform:scale(1.08);}.load-more-btn::before{content:'';position:absolute;inset:0;background:#c9901d;transform:scaleX(0);transform-origin:left;transition:transform .28s;z-index:0;}.load-more-btn:hover::before{transform:scaleX(1);}.load-more-btn:hover span{color:#0e0d0b !important;}.load-more-btn:disabled{opacity:.4;cursor:not-allowed;pointer-events:none;border-color:rgba(191,124,26,.2) !important;}.load-more-btn:disabled span{opacity:.7;}.pf-lb-progress{position:absolute;bottom:0;left:0;height:3px;background:#c9901d;width:0%;z-index:10000;transition:width linear;box-shadow:0 0 12px rgba(201,144,29,0.6);}.pf-lightbox{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .32s;}.pf-lightbox.open{opacity:1;pointer-events:auto;}.pf-lb-backdrop{position:absolute;inset:0;background:rgba(8,7,6,.96);backdrop-filter:blur(6px);}.pf-lb-stage{position:relative;z-index:2;width:min(90vw,1000px);height:min(80vh,700px);display:flex;align-items:center;justify-content:center;overflow:hidden;}.pf-lb-img-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .38s cubic-bezier(.22,1,.36,1);cursor:zoom-in;}#pf-lb-img{max-width:100%;max-height:100%;object-fit:contain;opacity:0;transform:scale(.94);transition:opacity .36s,transform .4s;}#pf-lb-img.loaded{opacity:1;transform:scale(1);}.pf-lb-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:48px;border-radius:50%;background:rgba(20,18,14,.7);border:1px solid rgba(201,144,29,.3);color:#c9901d;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .22s;}.pf-lb-arrow:hover{background:rgba(201,144,29,.15);transform:translateY(-50%) scale(1.08);}.pf-lb-prev{left:16px;}.pf-lb-next{right:16px;}@media (max-width:640px){.pf-lb-prev{left:6px;}.pf-lb-next{right:6px;}.pf-lb-arrow{width:38px;height:38px;}}.pf-lb-close{position:absolute;top:20px;right:20px;z-index:4;width:40px;height:40px;border-radius:50%;background:rgba(20,18,14,.7);border:1px solid rgba(201,144,29,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .22s;}.pf-lb-close:hover{background:rgba(201,144,29,.2);transform:scale(1.1) rotate(90deg);}.pf-lb-footer{position:absolute;bottom:0;left:0;right:0;z-index:3;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to top,rgba(8,7,6,.85),transparent);}.pf-lb-meta{display:flex;align-items:center;gap:12px;}.pf-lb-cat{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#c9901d;}.pf-lb-counter{font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.4);}.pf-lb-controls{display:flex;align-items:center;gap:6px;}.pf-lb-zoom-btn,.pf-lb-play-btn{width:34px;height:34px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;}.pf-lb-zoom-btn:hover,.pf-lb-play-btn:hover{background:rgba(201,144,29,.15);color:#c9901d;border-color:rgba(201,144,29,.4);}.pf-lb-play-btn.playing{background:rgba(201,144,29,.15);color:#c9901d;border-color:rgba(201,144,29,.5);}.pf-lb-divider{width:1px;height:22px;background:rgba(255,255,255,.12);margin:0 4px;}.pf-lb-speed-wrap{position:relative;}.pf-lb-speed-btn{height:34px;padding:0 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-size:.62rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .2s;white-space:nowrap;}.pf-lb-speed-btn:hover{background:rgba(201,144,29,.12);color:#c9901d;}.pf-lb-speed-menu{position:absolute;bottom:calc(100% + 8px);right:0;background:#1a1815;border:1px solid rgba(201,144,29,.25);border-radius:6px;overflow:hidden;display:none;flex-direction:column;min-width:80px;box-shadow:0 8px 24px rgba(0,0,0,.6);}.pf-lb-speed-menu.open{display:flex;}.pf-lb-speed-opt{padding:9px 14px;font-size:.62rem;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.5);background:transparent;border:none;cursor:pointer;text-align:left;transition:all .18s;}.pf-lb-speed-opt:hover,.pf-lb-speed-opt.active{background:rgba(201,144,29,.12);color:#c9901d;}
+    .categories-scroll::-webkit-scrollbar { display: none; }
+    .category-card { touch-action: pan-x; user-select: none; }
+    .category-item { border-color: rgba(255,255,255,0.1) !important; }
+    .category-card:hover .category-item { border-color: var(--accent-primary) !important; transform: translateY(-5px); }
 </style>
 
 <script>
-(function(){
-  const GALLERY_DATA = [
-    {cat:'haircut', span:'tall', src:'img/pelo-1.jpg', alt:'Classic Haircut'},
-    {cat:'styling', span:'', src:'img/styling-1.jpg', alt:'Premium Styling'},
-    {cat:'shaving', span:'', src:'img/shaving-1.jpg', alt:'Hot Shave'},
-    {cat:'trimming', span:'', src:'img/trimming-1.jpg', alt:'Beard Trim'},
-    {cat:'haircut', span:'', src:'img/pelo-2.jpg', alt:'Fade Haircut'},
-    {cat:'shaving', span:'wide', src:'img/shaving-2.jpg', alt:'Straight Razor'},
-    {cat:'styling', span:'', src:'img/styling-2.jpg', alt:'Hair Styling'},
-    {cat:'trimming', span:'', src:'img/trimming-2.jpg', alt:'Shape Up'},
-    {cat:'haircut', span:'wide', src:'img/pelo-3.jpg', alt:'Textured Cut'},
-    {cat:'trimming', span:'tall', src:'img/trimming-3.jpg', alt:'Beard Detail'},
-    {cat:'shaving', span:'', src:'img/shaving-3.jpg', alt:'Blade Shave'},
-    {cat:'haircut', span:'', src:'img/pelo-4.jpg', alt:'Crop Cut'},
-    {cat:'styling', span:'tall', src:'img/styling-3.jpg', alt:'Pompadour'},
-    {cat:'shaving', span:'', src:'img/shaving-4.jpg', alt:'Wet Shave'},
-    {cat:'haircut', span:'', src:'img/pelo-5.jpg', alt:'Clean Cut'},
-    {cat:'trimming', span:'wide', src:'img/trimming-4.jpg', alt:'Full Groom'},
-    {cat:'styling', span:'', src:'img/styling-4.jpg', alt:'Textured Style'},
-    {cat:'haircut', span:'', src:'img/pelo-6.jpg', alt:'Mid Fade'},
-    {cat:'shaving', span:'tall', src:'img/shaving-5.jpg', alt:'Classic Shave'},
-    {cat:'trimming', span:'', src:'img/trimming-5.jpg', alt:'Line Up'},
-    {cat:'haircut', span:'', src:'img/pelo-7.jpg', alt:'Taper Fade'},
-    {cat:'styling', span:'wide', src:'img/styling-5.jpg', alt:'Volume Styling'},
-    {cat:'trimming', span:'', src:'img/trimming-6.jpg', alt:'Precision Trim'},
-    {cat:'haircut', span:'', src:'img/pelo-8.jpg', alt:'Skin Fade'}
-  ];const PER_PAGE=9;let visibleCount=PER_PAGE,currentFilter='all',currentLbIndex=0,lbImages=[],autoplayTimer=null,autoplaySpeed=3e3,isPlaying=!1,zoomLevel=1;const grid=document.getElementById('gallery-grid'),loadBtn=document.getElementById('load-more-btn'),progressBar=document.getElementById('pf-lb-progress-bar'),lb=document.getElementById('pf-lightbox'),lbImg=document.getElementById('pf-lb-img'),lbImgWrap=document.getElementById('pf-lb-img-wrap');function getFilteredData(){return currentFilter==='all'?[...GALLERY_DATA]:GALLERY_DATA.filter(d=>d.cat===currentFilter)}function buildItem(d,index){const div=document.createElement('div');div.className='gallery-item';if(currentFilter==='all'){if(d.span==='tall')div.style.gridRow='span 2';else if(d.span==='wide')div.style.gridColumn='span 2'}div.innerHTML=`<img src="${d.src}" alt="${d.alt}" loading="lazy"/><div class="gallery-label"><span class="font-rally text-[.65rem] font-bold tracking-[.2em] uppercase text-gold">${d.cat}</span></div>`;div.addEventListener('click',()=>openLightbox(index));return div}function renderGallery(){grid.innerHTML='';const data=getFilteredData();lbImages=data;const slice=data.slice(0,visibleCount);slice.forEach((d,i)=>{const el=buildItem(d,i);grid.appendChild(el);requestAnimationFrame(()=>setTimeout(()=>el.classList.add('visible'),i*50))});const done=visibleCount>=data.length;loadBtn.querySelector('span').textContent=done?'Todo cargado':'Ver más';loadBtn.disabled=done}document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',function(){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');currentFilter=this.dataset.filter;visibleCount=PER_PAGE;renderGallery()}));loadBtn.addEventListener('click',()=>{visibleCount+=PER_PAGE;renderGallery()});function openLightbox(index){currentLbIndex=index;lb.classList.add('open');document.body.style.overflow='hidden';showLbSlide(index)}function closeLightbox(){stopAutoplay();lb.classList.remove('open');document.body.style.overflow='';lbImg.src='';lbImg.classList.remove('loaded');document.querySelector('.pf-lb-speed-menu').classList.remove('open')}function showLbSlide(index){const d=lbImages[index];if(!d)return;lbImg.classList.remove('loaded');lbImg.src=d.src;lbImg.alt=d.alt;lbImg.onload=()=>lbImg.classList.add('loaded');document.getElementById('pf-lb-cat').textContent=d.cat.charAt(0).toUpperCase()+d.cat.slice(1);document.getElementById('pf-lb-counter').textContent=`${index+1} / ${lbImages.length}`;resetZoom();if(isPlaying)startProgressAnimation()}function lbNavigate(dir){stopAutoplay();showLbSlide((currentLbIndex+dir+lbImages.length)%lbImages.length)}function startProgressAnimation(){clearTimeout(autoplayTimer);progressBar.style.transition='none';progressBar.style.width='0%';requestAnimationFrame(()=>requestAnimationFrame(()=>{progressBar.style.transition=`width ${autoplaySpeed}ms linear`;progressBar.style.width='100%'}));autoplayTimer=setTimeout(()=>{if(!isPlaying)return;currentLbIndex=(currentLbIndex+1)%lbImages.length;showLbSlide(currentLbIndex)},autoplaySpeed)}function stopAutoplay(){isPlaying=!1;clearTimeout(autoplayTimer);const btn=document.getElementById('pf-lb-autoplay');btn.classList.remove('playing');btn.querySelector('.pf-lb-play-icon').style.display='block';btn.querySelector('.pf-lb-pause-icon').style.display='none';progressBar.style.transition='none';progressBar.style.width='0%'}document.getElementById('pf-lb-autoplay').addEventListener('click',()=>{if(isPlaying)stopAutoplay();else{isPlaying=!0;const btn=document.getElementById('pf-lb-autoplay');btn.classList.add('playing');btn.querySelector('.pf-lb-play-icon').style.display='none';btn.querySelector('.pf-lb-pause-icon').style.display='block';startProgressAnimation()}});document.getElementById('pf-lb-prev').addEventListener('click',()=>lbNavigate(-1));document.getElementById('pf-lb-next').addEventListener('click',()=>lbNavigate(1));document.getElementById('pf-lb-close').addEventListener('click',closeLightbox);lb.querySelector('.pf-lb-backdrop').addEventListener('click',closeLightbox);document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='ArrowLeft')lbNavigate(-1);if(e.key==='ArrowRight')lbNavigate(1);if(e.key==='Escape')closeLightbox()});function applyZoom(l){zoomLevel=Math.min(Math.max(l,1),4);lbImgWrap.style.transform=`scale(${zoomLevel})`;lbImgWrap.classList.toggle('zoomed',zoomLevel>1)}function resetZoom(){applyZoom(1)}lbImgWrap.addEventListener('click',()=>applyZoom(zoomLevel===1?2:1));document.getElementById('pf-lb-zoom-in').addEventListener('click',()=>applyZoom(zoomLevel+.5));document.getElementById('pf-lb-zoom-out').addEventListener('click',()=>applyZoom(zoomLevel-.5));document.getElementById('pf-lb-speed-btn').addEventListener('click',e=>{e.stopPropagation();document.getElementById('pf-lb-speed-menu').classList.toggle('open')});document.addEventListener('click',()=>document.getElementById('pf-lb-speed-menu').classList.remove('open'));document.querySelectorAll('.pf-lb-speed-opt').forEach(opt=>opt.addEventListener('click',e=>{e.stopPropagation();autoplaySpeed=parseInt(opt.dataset.speed);document.querySelectorAll('.pf-lb-speed-opt').forEach(o=>o.classList.remove('active'));opt.classList.add('active');document.getElementById('pf-lb-speed-btn').textContent=opt.textContent;document.getElementById('pf-lb-speed-menu').classList.remove('open');if(isPlaying){stopAutoplay();startProgressAnimation()}}));renderGallery()})();
+    (function() {
+        const categories = [
+            { n: "Tablets", i: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=200", filter: "macbooks" },
+            { n: "Smartphones", i: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200", filter: "smartphones" },
+            { n: "Consolas", i: "https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=200", filter: "consolas" },
+            { n: "Cámaras", i: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=200", filter: "camaras" },
+            { n: "Smartwatch", i: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=200", filter: "smartwatch" },
+            { n: "Drones", i: "https://images.unsplash.com/photo-1506947411487-a56738267384?w=200", filter: "drones" },
+            { n: "Audio", i: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200", filter: "audio" },
+            { n: "Computadoras", i: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=200", filter: "laptops" }
+        ];
+
+        document.getElementById("categoriesContainer").innerHTML = categories.map(c => `
+            <a href="tienda.html?filter=${c.filter}" class="category-card flex-shrink-0 text-center group cursor-pointer w-24 transition-all duration-300" onclick="navigateWithFilter('tienda.html?filter=${c.filter}'); return false;">
+                <div class="category-item w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center mx-auto mb-3 overflow-hidden relative border-2 transition-all duration-300">
+                    <img src="${c.i}" alt="${c.n}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                         style="background: radial-gradient(circle, rgba(0,212,255,0.2) 0%, transparent 70%);"></div>
+                </div>
+                <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest transition-colors group-hover:text-[var(--accent-primary)]" style="color: var(--text-primary);">${c.n}</p>
+            </a>
+        `).join('');
+    })();
 </script>
 
-<!-- ══ VIDEOS ══ -->
-<section class="bg-[#0e0d0b] py-[110px] px-[6%] relative overflow-hidden" id="videos-section">
-  <div class="absolute inset-0 pointer-events-none z-0 opacity-[.07]" style="background-image:var(--grunge);background-size:300px;"></div>
-
-  <div class="relative z-[1] max-w-[1100px] mx-auto">
-
-    <div class="videos-header mb-[52px] lg:text-center">
-  <!-- Versión mobile: mantiene el estilo único original -->
-  <div class="flex lg:hidden items-start justify-between gap-5">
-    <div class="videos-heading-block flex-1">
-      <p class="text-[#c9901d] text-[.65rem] tracking-[.28em] uppercase font-semibold mb-3 flex items-center gap-2"><span class="inline-block w-6 h-px bg-[#c9901d] opacity-70"></span>Master Barbers</p>
-      <div class="inline-flex items-center gap-[10px] mb-1">
-        <svg width="26" height="20" viewBox="0 0 28 22" fill="none"><path d="M4 18 L22 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"/><path d="M24 18 L6 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"/><circle cx="14" cy="11" r="1.8" fill="#c9901d"/><path d="M11 19 L14 22 L17 19" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 3 L14 1 L18 3" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> 
-        <div class="nnum text-[#c9901d] font-rally font-bold text-[1.2rem] leading-none">04</div>
-        <h2 class="font-rally font-extrabold text-[clamp(1.5rem,3vw,2.1rem)] tracking-[.05em] uppercase text-twht leading-none m-0">OUR <span class="word-gold">VIDEOS</span></h2>
-      </div>
-      <p class="font-rally text-[.78rem] text-tgry leading-[1.7] mt-2.5 max-w-[400px]">Watch our master barbers in action — from zero to fade in minutes.</p>
-    </div>
-  </div>
-  
-  <!-- Versión desktop: centrado con estilo único de VIDEOS (sin número 03) -->
-  <div class="hidden lg:block">
-    <!-- Master Barbers con líneas (estilo único) -->
-    <p class="text-[#c9901d] text-[.65rem] tracking-[.28em] uppercase font-semibold mb-3 flex items-center justify-center gap-2"><span class="inline-block w-6 h-px bg-[#c9901d] opacity-70"></span>Master Barbers<span class="inline-block w-6 h-px bg-[#c9901d] opacity-70"></span></p>
-    
-    <!-- Título con ícono (sin número 03) -->
-    <div class="inline-flex items-center gap-[10px] mb-1">
-      <svg width="26" height="20" viewBox="0 0 28 22" fill="none"><path d="M4 18 L22 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"/><path d="M24 18 L6 4" stroke="#c9901d" stroke-width="1.4" stroke-linecap="round"/><circle cx="14" cy="11" r="1.8" fill="#c9901d"/><path d="M11 19 L14 22 L17 19" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 3 L14 1 L18 3" stroke="#c9901d" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> 
-      <h2 class="font-rally font-extrabold text-[clamp(1.5rem,3vw,2.1rem)] tracking-[.05em] uppercase text-twht leading-none m-0">OUR <span class="word-gold">VIDEOS</span></h2>
-    </div>
-    
-    <!-- Línea dorada centrada -->
-    <div class="gold-rule-center w-11 h-0.5 bg-gold mx-auto mt-3"></div>
-    
-    <!-- Texto más largo en desktop -->
-    <p class="font-rally text-[.9rem] text-tgry leading-[1.8] max-w-[620px] mx-auto mt-[18px]">Watch our master barbers in action — from zero to fade in minutes. Each video captures the precision, technique, and artistry that defines our craft, giving you a front-row seat to the transformation.</p>
-  </div>
-</div>
-
-    <!-- PLAYER -->
-    <div class="vs-player-wrap relative w-full overflow-hidden mb-3 bg-black" style="aspect-ratio:16/9;box-shadow:0 0 0 1px rgba(201,144,29,.1),0 28px 70px rgba(0,0,0,.7);">
-      <video id="vd-player" class="absolute inset-0 w-full h-full object-cover" playsinline preload="metadata"></video>
-      <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(5,4,2,.65) 0%,transparent 45%,transparent 80%,rgba(5,4,2,.2) 100%);"></div>
-      <div id="vd-play-zone" class="absolute inset-0 flex items-center justify-center cursor-pointer z-10">
-        <div id="vd-play-btn" class="w-[62px] h-[62px] rounded-full flex items-center justify-center" style="background:#c9901d;box-shadow:0 0 0 5px rgba(201,144,29,.25),0 0 28px rgba(201,144,29,.2);transition:opacity .25s,transform .25s;">
-          <svg id="vd-icon-play"  width="22" height="22" viewBox="0 0 24 24" fill="#0e0d0b"><path d="M8 5v14l11-7z"/></svg>
-          <svg id="vd-icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="#0e0d0b" class="hidden"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>
-        </div>
-      </div>
-      <div class="absolute bottom-0 left-0 right-0 z-20 px-5 pb-5">
-        <div class="flex justify-end mb-2">
-          <button id="vd-mute" class="w-8 h-8 rounded-full border border-white/20 bg-black/40 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:border-white/40 transition-all duration-200">
-            <svg id="vd-icon-sound" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-            <svg id="vd-icon-muted" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-          </button>
-        </div>
-        <div id="vd-progress-track" class="w-full h-[3px] cursor-pointer relative overflow-hidden" style="background:rgba(255,255,255,.18);">
-          <div id="vd-progress-fill" class="h-full pointer-events-none" style="width:0%;background:linear-gradient(90deg,#c9901d,#e0a830);transition:none;"></div>
-        </div>
-      </div>
-      <div id="vd-loader" class="absolute inset-0 flex items-center justify-center z-30 hidden">
-        <div class="w-8 h-8 rounded-full border-2 border-[#c9901d]/30 border-t-[#c9901d] animate-spin"></div>
-      </div>
-    </div>
-
-    <!-- THUMBNAILS SWIPER -->
-    <div class="swiper vs-swiper cursor-grab active:cursor-grabbing">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide vs-thumb" data-idx="0" data-src="https://bouzen.org/wp-content/uploads/2026/02/baber-1.mp4">
-          <div class="vs-ti relative overflow-hidden" style="aspect-ratio:16/9;"><video class="w-full h-full object-cover pointer-events-none" src="https://bouzen.org/wp-content/uploads/2026/02/baber-1.mp4" muted preload="metadata" style="filter:brightness(.55) saturate(.9);"></video><div class="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent"></div><div class="absolute inset-0 flex items-center justify-center"><div class="vd-thumb-play w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(255,255,255,.18);backdrop-filter:blur(4px);"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-        </div>
-        <div class="swiper-slide vs-thumb" data-idx="1" data-src="https://bouzen.org/wp-content/uploads/2026/02/barber-3.mp4">
-          <div class="vs-ti relative overflow-hidden" style="aspect-ratio:16/9;"><video class="w-full h-full object-cover pointer-events-none" src="https://bouzen.org/wp-content/uploads/2026/02/barber-3.mp4" muted preload="metadata" style="filter:brightness(.55) saturate(.9);"></video><div class="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent"></div><div class="absolute inset-0 flex items-center justify-center"><div class="vd-thumb-play w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(255,255,255,.18);backdrop-filter:blur(4px);"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-        </div>
-        <div class="swiper-slide vs-thumb" data-idx="2" data-src="https://bouzen.org/wp-content/uploads/2026/02/barber-2.mp4">
-          <div class="vs-ti relative overflow-hidden" style="aspect-ratio:16/9;"><video class="w-full h-full object-cover pointer-events-none" src="https://bouzen.org/wp-content/uploads/2026/02/barber-2.mp4" muted preload="metadata" style="filter:brightness(.55) saturate(.9);"></video><div class="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent"></div><div class="absolute inset-0 flex items-center justify-center"><div class="vd-thumb-play w-8 h-8 rounded-full flex items-center justify-center" style="background:rgba(255,255,255,.18);backdrop-filter:blur(4px);"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-        </div>
-      </div>
-      <div class="swiper-pagination vs-pagination mt-4"></div>
-    </div>
-
-    <!-- MOBILE ARROWS -->
-    <div class="flex md:hidden justify-center gap-3 mt-5">
-      <button id="vd-prev-mob" class="vd-arrow-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-      <button id="vd-next-mob" class="vd-arrow-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
-    </div>
-
-  </div>
-</section>
-
-<style>
-.vd-arrow-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,144,29,.5);color:rgba(201,144,29,.7);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .15s;}
-.vd-arrow-btn:hover{background:#c9901d;color:#0e0d0b;border-color:#c9901d;transform:scale(1.08);}
-.vs-ti{border:2px solid rgba(201,144,29,.55);transition:border-color .3s,opacity .3s;}
-.vs-thumb.is-active .vs-ti{border-color:transparent;opacity:1;}
-.vs-thumb:not(.is-active) .vs-ti{opacity:.62;}
-.vs-thumb:not(.is-active):hover .vs-ti{opacity:.85;border-color:rgba(201,144,29,.85);}
-.vs-swiper .swiper-slide{width:30% !important;}
-@media(max-width:768px){.vs-swiper .swiper-slide{width:72vw !important;}}
-.vs-pagination .swiper-pagination-bullet{background:rgba(201,144,29,.35);opacity:1;width:6px;height:6px;}
-.vs-pagination .swiper-pagination-bullet-active{background:#c9901d;width:18px;border-radius:3px;transition:width .3s;}
-</style>
-
-<!-- ══ TEAM ══ -->
-<style>
-  .team-header { position: relative; }
-
-  /* Ghost number — fade con gradient mask */
-  .nnum {
-    position: absolute;
-    right: 0; top: -20px;
-    font-family: 'Rye', serif;
-    font-size: 9rem;
-    line-height: 1;
-    letter-spacing: -4px;
-    pointer-events: none;
-    user-select: none;
-    color: #bf7c1a;
-    opacity: 0.07;
-    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,.9) 0%, rgba(0,0,0,.3) 60%, transparent 100%);
-    mask-image: linear-gradient(to left, rgba(0,0,0,.9) 0%, rgba(0,0,0,.3) 60%, transparent 100%);
-  }
-
-  /* Outline text con gradient simulado via clip */
-  .team-header h2 em {
-    font-style: normal;
-    display: block;
-    -webkit-text-stroke: 1px rgba(191,124,26,.55);
-    color: transparent;
-    /* Sutil fill dorado casi invisible para dar presencia */
-    background: linear-gradient(135deg, rgba(212,149,42,.08) 0%, transparent 60%);
-    -webkit-background-clip: text;
-  }
-
-  /* Separador entre h2 y párrafo */
-  .team-header-rule {
-    width: 48px;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(191,124,26,.55), transparent);
-    margin: 14px 0;
-  }
-</style>
-
-<section class="bg-[#111110] py-[80px] sm:py-[110px] px-4 sm:px-8 lg:px-[6%] relative overflow-hidden" id="team">
-  <div class="absolute inset-0 pointer-events-none z-0 opacity-[.08]" style="background-image:var(--grunge);background-size:300px;"></div>
-
-  <div class="relative z-[1] max-w-[1140px] mx-auto">
-
-<!-- Header -->
-<div class="team-header mb-12 sm:mb-16">
-  <div class="nnum">05</div>
-  <h2 class="font-rye text-[clamp(2rem,4vw,3.4rem)] text-[#f0ece4] leading-[1.05] mb-0 g-up">
-    MEET THE<br/><em>CRAFTSMEN</em>
-  </h2>
-  <div class="team-header-rule"></div>
-  <p class="font-rally text-[.83rem] text-[#8a8580] leading-[1.85] max-w-[440px] g-up">
-    Four master barbers. One obsession: perfection. Each brings a signature style
-    and years of refined technique to every single cut.
-  </p>
-</div>
-
-    <!-- Grid — 1 col mobile / 2 col tablet / 4 col desktop -->
-    <div class="team-grid active-with-click">
-      <!-- Cards injected by JS -->
-    </div>
-
-  </div>
-</section>
-
-<!-- ── Card template ── -->
-<template id="card-tpl">
-  <div class="team-col">
-    <article class="material-card {{theme}}">
-      <h2>
-        <span>{{name}}</span>
-        <strong><i class="fa-solid fa-scissors"></i>Master Barber</strong>
-      </h2>
-      <div class="mc-content">
-        <div class="img-container">
-          <img class="mc-img-responsive" src="{{img}}" alt="{{name}}">
-          <div class="card-top-border"></div>
-        </div>
-        <div class="mc-description">{{desc}}</div>
-      </div>
-      <a class="mc-btn-action" role="button" aria-label="Toggle details" aria-expanded="false">
-        <span class="mc-toggle-icon" aria-hidden="true">
-          <span class="mc-toggle-icon__line mc-toggle-icon__line--top"></span>
-          <span class="mc-toggle-icon__line mc-toggle-icon__line--middle"></span>
-          <span class="mc-toggle-icon__line mc-toggle-icon__line--bottom"></span>
-        </span>
-      </a>
-      <div class="mc-footer">
-        <div class="stat-group">
-          <div class="stat-item">
-            <i class="fa-solid fa-clock"></i>
-            <span class="stat-value">{{yrs}}yr</span>
-            <span class="stat-label">Exp.</span>
-          </div>
-          <div class="stat-item">
-            <i class="fa-solid fa-users"></i>
-            <span class="stat-value">{{clients}}</span>
-            <span class="stat-label">Clients</span>
-          </div>
-          <div class="stat-item">
-            <i class="fa-solid fa-star"></i>
-            <span class="stat-value">{{rating}}</span>
-            <span class="stat-label">Rating</span>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-</template>
-
-<!-- ══ LOCATION ══ -->
-<style>
-  /* ── Overline — simétrico con línea antes y después ── */
-  .location-overline {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .location-overline::before {
-    content: '';
-    width: 28px; height: 1px;
-    flex-shrink: 0;
-    background: linear-gradient(to left, rgba(191,124,26,.5), transparent);
-  }
-  .location-overline::after {
-    content: '';
-    width: 120px; height: 1px;
-    flex-shrink: 0;
-    background: linear-gradient(to right, rgba(191,124,26,.4), transparent);
-  }
-
-  /* ── Ghost number ── */
-  .loc-ghost-num {
-    position: absolute;
-    right: 0; top: -24px;
-    font-family: 'Rye', serif;
-    font-size: 9rem;
-    line-height: 1;
-    letter-spacing: -4px;
-    pointer-events: none;
-    user-select: none;
-    color: #bf7c1a;
-    opacity: 0.06;
-    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,.95) 0%, rgba(0,0,0,.2) 65%, transparent 100%);
-    mask-image: linear-gradient(to left, rgba(0,0,0,.95) 0%, rgba(0,0,0,.2) 65%, transparent 100%);
-  }
-
-  /* ── Header rule ── */
-  .loc-header-rule {
-    width: 48px; height: 1px;
-    background: linear-gradient(90deg, rgba(191,124,26,.55), transparent);
-    margin: 13px 0;
-  }
-
-  /* ── Media grid ── */
-  .location-media-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  @media (min-width: 768px) {
-    .location-media-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  /* ── Map frame ── */
-  .location-map-wrap {
-    position: relative;
-    overflow: hidden;
-    height: 280px;
-  }
-  @media (min-width: 768px) {
-    .location-map-wrap { height: 400px; }
-  }
-  .location-map-wrap iframe {
-    display: block;
-    width: 100%; height: 100%;
-    border: 0;
-    /* Dark map: invert + hue-rotate */
-    filter: invert(1) hue-rotate(180deg) brightness(.82) saturate(.65);
-    transition: filter .4s;
-  }
-  .location-map-wrap:hover iframe {
-    filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.8);
-  }
-  /* Gold border overlay */
-  .location-map-wrap::after {
-    content: '';
-    position: absolute; inset: 0;
-    border: 1px solid rgba(191,124,26,.22);
-    pointer-events: none;
-    z-index: 2;
-  }
-  /* Top-left corner mark */
-  .location-map-wrap::before {
-    content: '';
-    position: absolute;
-    top: 8px; left: 8px;
-    width: 18px; height: 18px;
-    border-top: 1px solid rgba(191,124,26,.5);
-    border-left: 1px solid rgba(191,124,26,.5);
-    z-index: 3;
-    pointer-events: none;
-  }
-
-  /* ── Photo frame ── */
-  .location-photo-wrap {
-    position: relative;
-    overflow: hidden;
-    height: 280px;
-  }
-  @media (min-width: 768px) {
-    .location-photo-wrap { height: 400px; }
-  }
-  .location-photo-wrap img {
-    display: block;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    filter: sepia(20%) contrast(1.04) brightness(.88);
-    transition: transform .6s cubic-bezier(.4,0,.2,1), filter .4s;
-  }
-  .location-photo-wrap:hover img {
-    transform: scale(1.04);
-    filter: sepia(8%) contrast(1.06) brightness(.93);
-  }
-  /* Gold tint overlay */
-  .location-photo-wrap::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(191,124,26,.06) 0%, transparent 60%);
-    z-index: 2;
-    pointer-events: none;
-  }
-  /* Bottom vignette */
-  .location-photo-wrap .photo-vignette {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 40%;
-    background: linear-gradient(to top, rgba(10,9,8,.6) 0%, transparent 100%);
-    z-index: 3;
-    pointer-events: none;
-  }
-  /* Gold border overlay */
-  .location-photo-wrap::after {
-    content: '';
-    position: absolute; inset: 0;
-    border: 1px solid rgba(191,124,26,.2);
-    z-index: 4;
-    pointer-events: none;
-  }
-  /* Bottom-right corner mark */
-  .photo-corner-mark {
-    position: absolute;
-    bottom: 8px; right: 8px;
-    width: 18px; height: 18px;
-    border-bottom: 1px solid rgba(191,124,26,.5);
-    border-right: 1px solid rgba(191,124,26,.5);
-    z-index: 5;
-    pointer-events: none;
-  }
-
-  /* ── Info cards grid ── */
-  .location-info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  @media (min-width: 768px) {
-    .location-info-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-
-  /* ── Info card ── */
-  .loc-info-card {
-    background: #141210;
-    padding: 24px 20px;
-    border: 1px solid rgba(191,124,26,.1);
-    position: relative;
-    overflow: hidden;
-    transition: border-color .3s;
-  }
-  /* Bottom gold line — slide in on hover */
-  .loc-info-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--gold, #bf7c1a), transparent);
-    transform: scaleX(0);
-    transition: transform .4s cubic-bezier(.4,0,.2,1);
-  }
-  .loc-info-card:hover { border-color: rgba(191,124,26,.28); }
-  .loc-info-card:hover::after { transform: scaleX(1); }
-
-  /* Icon ring — reacts to hover */
-  .loc-icon {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: rgba(191,124,26,.1);
-    border: 1px solid rgba(191,124,26,.25);
-    display: flex; align-items: center; justify-content: center;
-    color: #bf7c1a;
-    margin-bottom: 14px;
-    transition: background .3s, border-color .3s;
-  }
-  .loc-info-card:hover .loc-icon {
-    background: rgba(191,124,26,.18);
-    border-color: rgba(191,124,26,.5);
-  }
-
-  .loc-title {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 700;
-    font-size: .67rem;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: #f0ece4;
-    margin-bottom: 7px;
-  }
-  .loc-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: .74rem;
-    color: #8a8580;
-    line-height: 1.65;
-  }
-  /* Noise grain on cards */
-  .loc-info-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    background-size: 200px;
-    opacity: .025;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .loc-info-card > * { position: relative; z-index: 1; }
-</style>
-
-<section class="bg-[#0a0908] py-[80px] sm:py-[110px] px-4 sm:px-8 lg:px-[6%] relative overflow-hidden" id="location">
-  <!-- Grunge texture -->
-  <div class="absolute inset-0 pointer-events-none z-0 opacity-[.07]"
-       style="background-image:var(--grunge,url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.75%27 numOctaves=%274%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix type=%27saturate%27 values=%270%27/%3E%3C/filter%3E%3Crect width=%27300%27 height=%27300%27 filter=%27url(%23n)%27 opacity=%271%27/%3E%3C/svg%3E'));background-size:300px;"></div>
-
-  <div class="relative z-[1] max-w-[1140px] mx-auto">
-
-    <!-- ── Header ── -->
-    <div class="location-header relative mb-[48px] sm:mb-[56px]">
-      <div class="loc-ghost-num">06</div>
-
-      <p class="location-overline font-rally text-[.6rem] font-bold tracking-[.3em] uppercase text-[#bf7c1a] mb-[14px]">
-        Where To Find Us
-      </p>
-
-      <h2 class="font-rally font-extrabold text-[clamp(1.6rem,3.2vw,2.4rem)] tracking-[.04em] uppercase text-[#f0ece4] leading-[1.05] mb-0">
-        VISIT OUR <span style="background:linear-gradient(135deg,#d4952a 0%,#bf7c1a 50%,#9a6010 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">BARBERSHOP</span>
-      </h2>
-
-      <div class="loc-header-rule"></div>
-
-      <p class="font-rally text-[.82rem] text-[#8a8580] leading-[1.8] max-w-[440px]">
-        Drop in or book ahead — we're in the heart of Brooklyn, ready to deliver the experience you deserve.
-      </p>
-    </div>
-
-    <!-- ── Media: mapa + foto ── -->
-    <div class="location-media-grid">
-
-      <!-- Mapa oscuro -->
-      <div class="location-map-wrap">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-73.99609808459418!3d40.69053627933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sBrooklyn%20Bridge!5e0!3m2!1sen!2sus!4v1632000000000!5m2!1sen!2sus"
-          title="Location"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-
-      <!-- Foto interior -->
-      <div class="location-photo-wrap">
-        <img
-          src="img/barber-shop.png"
-          alt="Our barbershop interior"
-          onerror="this.src='https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1000&q=85'"
-        />
-        <div class="photo-vignette"></div>
-        <div class="photo-corner-mark"></div>
-      </div>
-
-    </div>
-
-    <!-- ── Info cards ── -->
-    <div class="location-info-grid">
-
-      <!-- Address -->
-      <div class="loc-info-card">
-        <div class="loc-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
-        <div class="loc-title">Address</div>
-        <div class="loc-text">142 Brooklyn Street<br/>New York, NY 11201</div>
-      </div>
-
-      <!-- Hours -->
-      <div class="loc-info-card">
-        <div class="loc-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-        </div>
-        <div class="loc-title">Hours</div>
-        <div class="loc-text">Mon–Fri: 9am – 8pm<br/>Sat–Sun: 10am – 6pm</div>
-      </div>
-
-      <!-- Phone -->
-      <div class="loc-info-card">
-        <div class="loc-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        </div>
-        <div class="loc-title">Phone</div>
-        <div class="loc-text">+1 (323) 456-7890<br/>+1 (323) 456-7891</div>
-      </div>
-
-      <!-- Email -->
-      <div class="loc-info-card">
-        <div class="loc-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </div>
-        <div class="loc-title">Email</div>
-        <div class="loc-text">info@learn2barber.com<br/>booking@learn2barber.com</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══ CONTACT ══ -->
-<style>
-/* ── CONTACT ── */
-.select-wrap::after{content:'';position:absolute;right:12px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid rgba(255,255,255,.28);pointer-events:none;transition:border-color .2s;}
-.select-wrap:focus-within::after{border-top-color:var(--gold);}
-select.form-field{appearance:none;cursor:pointer;color:rgba(255,255,255,.28);}
-select.form-field option{color:#f0ece4;background:#1a1917;}
-select.form-field:focus,select.form-field:valid{color:#f0ece4;}
-.form-field:focus{border-color:var(--gold);background:rgba(255,255,255,.06);}
-.form-field::placeholder{color:rgba(255,255,255,.28);}
-
-/* ── Fade bottom imagen ── */
-.contact-img-fade {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 38%;
-  background: linear-gradient(to top,
-    #0a0908        0%,
-    rgba(10,9,8,.78) 30%,
-    rgba(10,9,8,.3)  62%,
-    transparent      100%);
-  pointer-events: none;
-  z-index: 3;
-}
-
-/* ── Success ── */
-#ct-success { display:none; padding:24px 0 0; font-family:'Raleway',sans-serif; }
-#ct-success.visible { display:block; }
-#ct-success strong { display:block; font-size:.9rem; color:#f0ece4; margin-bottom:6px; }
-#ct-success p { font-size:.8rem; color:#8a8580; line-height:1.8; }
-</style>
-
-<section class="relative overflow-hidden bg-[#0a0908]" id="contact">
-  <div class="absolute inset-0 opacity-[.07] pointer-events-none" style="background-image:var(--grunge);background-size:300px;"></div>
-
-  <!-- Mobile image -->
-  <div class="relative bg-[#0a0908] justify-center pt-4 px-6 z-[2] hidden max-[768px]:flex">
-    <img src="img/barbero.png" alt="Barber" class="block w-auto max-w-[95%] h-auto object-contain object-bottom" onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&q=85'"/>
-    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0a0908] to-transparent pointer-events-none"></div>
-  </div>
-
-  <!-- Grid -->
-  <div class="relative z-[2] grid min-h-[620px] max-[768px]:grid-cols-1 min-[769px]:grid-cols-2">
-
-    <!-- Image col (tablet+) — más grande + fade bottom + imagen más arriba -->
-<div class="hidden min-[769px]:flex items-start justify-center relative bg-[#0a0908] overflow-hidden">
-  <img
-    src="img/barbero.png"
-    alt="Barber"
-    class="block w-auto h-auto object-contain object-top relative z-[2] mt-10
-           min-[769px]:max-h-[580px] min-[769px]:max-w-[90%]
-           min-[1024px]:max-h-[700px] min-[1024px]:max-w-[95%]"
-    onerror="this.src='https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&q=85'"
-  />
-  <div class="contact-img-fade"></div>
-</div>
-
-    <!-- Form col -->
-    <div class="bg-[#0a0908] flex flex-col p-6 min-[769px]:p-8 min-[1024px]:pt-20 min-[1024px]:pl-14 min-[1024px]:items-start">
-      <div class="w-full max-w-[500px] mx-auto min-[769px]:mx-0">
-
-        <h2 class="font-rally font-extrabold uppercase text-[clamp(2rem,4vw,3rem)] leading-none tracking-[.04em] text-twht mb-2">
-          GET IN <span class="font-rye text-gold">TOUCH</span>
-        </h2>
-        <p class="font-rally text-[.8rem] leading-[1.8] text-[rgba(240,236,228,.52)] mt-2 mb-6">
-          Ready for a fresh cut? Book your appointment with one of our master barbers and experience precision grooming at its finest.
-        </p>
-
-        <form id="ct-form" class="flex flex-col gap-[5px]"
-              action="https://formsubmit.co/lunarojadigital@gmail.com"
-              method="POST">
-
-          <!-- FormSubmit config -->
-          <input type="hidden" name="_subject"  value="Nueva Cita — Barbershop">
-          <input type="hidden" name="_captcha"  value="false">
-          <input type="hidden" name="_template" value="table">
-
-          <!-- Day + Time -->
-          <div class="grid gap-[5px]" style="grid-template-columns:1.4fr 1fr;">
-            <div class="select-wrap relative">
-              <select name="day" class="form-field font-rally text-[.78rem] bg-[rgba(255,255,255,.04)] border border-[rgba(255,255,255,.14)] text-twht px-[14px] py-[13px] outline-none transition-all duration-200 w-full" required>
-                <option value="" disabled selected>Day</option>
-                <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
-                <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
-              </select>
+    <!-- ==================== SERVICIOS ==================== -->
+    <section class="py-10 px-6" style="background: var(--bg-primary);">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="service-card p-6 rounded-xl text-center">
+                    <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--accent-primary);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+                    <h4 class="orbitron font-bold text-sm mb-1" style="color: var(--text-primary);">ENVÍO GRATIS</h4>
+                    <p class="text-xs" style="color: var(--text-secondary);">En pedidos superiores a $10 000 RDS</p>
+                </div>
+                <div class="service-card p-6 rounded-xl text-center">
+                    <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--accent-primary);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <h4 class="orbitron font-bold text-sm mb-1" style="color: var(--text-primary);">PAGO SEGURO</h4>
+                    <p class="text-xs" style="color: var(--text-secondary);">Transacciones 100% protegidas</p>
+                </div>
+                <div class="service-card p-6 rounded-xl text-center">
+                    <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--accent-primary);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <h4 class="orbitron font-bold text-sm mb-1" style="color: var(--text-primary);">GARANTÍA 1 AÑO</h4>
+                    <p class="text-xs" style="color: var(--text-secondary);">Protección contra defectos</p>
+                </div>
+                <div class="service-card p-6 rounded-xl text-center">
+                    <svg class="w-10 h-10 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--accent-primary);"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <h4 class="orbitron font-bold text-sm mb-1" style="color: var(--text-primary);">SOPORTE 24/7</h4>
+                    <p class="text-xs" style="color: var(--text-secondary);">Asistencia técnica disponible</p>
+                </div>
             </div>
-            <input name="time" class="form-field font-rally text-[.78rem] bg-[rgba(255,255,255,.04)] border border-[rgba(255,255,255,.14)] text-twht px-[14px] py-[13px] outline-none transition-all duration-200 w-full" type="text" placeholder="Time" required/>
-          </div>
+        </div>
+    </section>
 
-          <!-- Service + Stylist -->
-          <div class="grid gap-[5px]" style="grid-template-columns:1.4fr 1fr;">
-            <div class="select-wrap relative">
-              <select name="service" class="form-field font-rally text-[.78rem] bg-[rgba(255,255,255,.04)] border border-[rgba(255,255,255,.14)] text-twht px-[14px] py-[13px] outline-none transition-all duration-200 w-full" required>
-                <option value="" disabled selected>Services</option>
-                <option>Haircut</option><option>Hot Towel Shave</option>
-                <option>Beard Sculpting</option><option>Hair Styling</option>
-              </select>
+    <!-- ==================== PRODUCTOS DESTACADOS (3 banners) ==================== -->
+    <section id="product-section" class="py-14 px-6" style="background: var(--bg-secondary);">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Banner 1 -->
+                <div class="product-card relative overflow-hidden rounded-2xl group cursor-pointer h-64 md:h-72">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=400&fit=crop" alt="MacBook" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <p class="text-xs tracking-widest uppercase mb-1 text-cyan-400">Portátiles</p>
+                        <h3 class="orbitron text-xl font-bold mb-2">MACBOOK PRO M3</h3>
+                        <p class="text-white/80 text-xs mb-3">La potencia que necesitas en movimiento</p>
+                        <div class="flex items-center justify-between">
+                            <span class="orbitron font-bold text-lg text-cyan-400">$45,999</span>
+                            <a href="tienda.html?filter=macbooks" class="text-xs px-3 py-1 rounded border border-white/60 hover:bg-white/20 transition-colors" onclick="navigateWithFilter('tienda.html?filter=macbooks'); return false;">Ver más →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Banner 2 -->
+                <div class="product-card relative overflow-hidden rounded-2xl group cursor-pointer h-64 md:h-72">
+                    <img src="https://images.unsplash.com/photo-1589492477829-5e65395b66cc?w=600&h=400&fit=crop" alt="Smart Speaker" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <p class="text-xs tracking-widest uppercase mb-1 text-cyan-400">Smart Home</p>
+                        <h3 class="orbitron text-xl font-bold mb-2">LAPTOP DELL</h3>
+                        <p class="text-white/80 text-xs mb-3">Potente portátil con pantalla táctil</p>
+                        <div class="flex items-center justify-between">
+                            <span class="orbitron font-bold text-lg text-cyan-400">$8,499</span>
+                            <a href="tienda.html?filter=laptops" class="text-xs px-3 py-1 rounded border border-white/60 hover:bg-white/20 transition-colors" onclick="navigateWithFilter('tienda.html?filter=laptops'); return false;">Ver más →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Banner 3 -->
+                <div class="product-card relative overflow-hidden rounded-2xl group cursor-pointer h-64 md:h-72">
+                    <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&h=400&fit=crop" alt="Speaker" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <p class="text-xs tracking-widest uppercase mb-1 text-cyan-400">Audio</p>
+                        <h3 class="orbitron text-xl font-bold mb-2">BAMBOO SPEAKER</h3>
+                        <p class="text-white/80 text-xs mb-3">Diseño elegante y sonido natural</p>
+                        <div class="flex items-center justify-between">
+                            <span class="orbitron font-bold text-lg text-cyan-400">$3,299</span>
+                            <a href="tienda.html?filter=audio" class="text-xs px-3 py-1 rounded border border-white/60 hover:bg-white/20 transition-colors" onclick="navigateWithFilter('tienda.html?filter=audio'); return false;">Ver más →</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="select-wrap relative">
-              <select name="stylist" class="form-field font-rally text-[.78rem] bg-[rgba(255,255,255,.04)] border border-[rgba(255,255,255,.14)] text-twht px-[14px] py-[13px] outline-none transition-all duration-200 w-full" required>
-                <option value="" disabled selected>Stylist</option>
-                <option>Andrew W.</option>
-                <option>Jake P.</option>
-                <option>Enrique S.</option>
-                <option>Barbara L.</option>
-              </select>
-            </div>
-          </div>
+        </div>
+    </section>
 
-          <!-- Name + Phone -->
-          <div class="grid grid-cols-2 gap-[5px]">
-            <input name="name"  class="form-field font-rally text-[.78rem] bg-[rgba(255,255,255,.04)] border border-[rgba(255,255,255,.14)] text-twht px-[14px] py-[13px] outline-none transition-all duration-200 w-full" type="text" placeholder="Name"  required/>
-            <input name="phone" class="form-field font-rally text-[.78rem] bg-[rgba(255,255,255,.04)] border border-[rgba(255,255,255,.14)] text-twht px-[14px] py-[13px] outline-none transition-all duration-200 w-full" type="tel"  placeholder="Phone" required/>
-          </div>
-
-          <!-- Email -->
-          <input name="email" class="form-field font-rally text-[.78rem] bg-[rgba(255,255,255,.04)] border border-[rgba(255,255,255,.14)] text-twht px-[14px] py-[13px] outline-none transition-all duration-200 w-full" type="email" placeholder="Email" required/>
-
-          <button id="ct-submit"
-            class="font-rally font-semibold text-[.72rem] tracking-[.18em] uppercase text-twht bg-transparent border border-[rgba(255,255,255,.4)] px-9 py-[13px] cursor-pointer transition-all duration-[250ms] self-start mt-2 hover:bg-white/[.07] hover:border-white"
-            type="submit">Submit</button>
-        </form>
-
-        <!-- Mensaje de éxito -->
-        <div id="ct-success">
-          <strong>Appointment request sent ✓</strong>
-          <p>We'll confirm your booking shortly.<br/>Check your inbox at the email provided.</p>
+    <!-- ==================== TOP SMARTPHONE TRENDS ==================== -->
+    <section class="py-14 px-6" style="background: var(--bg-primary);">
+    <div class="container mx-auto">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="orbitron text-2xl md:text-3xl font-bold" style="color: var(--text-primary);">
+                TOP SMARTPHONE <span class="sm hidden md:inline">TRENDS</span>
+            </h2>
+            <a href="tienda.html?filter=smartphones" class="text-sm flex items-center gap-1 hover:gap-2 transition-all" style="color: var(--accent-primary);" onclick="navigateWithFilter('tienda.html?filter=smartphones'); return false;">
+                Ver todo 
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
         </div>
 
-      </div>
+        <div id="product-grid" class="products-row flex gap-4 pb-3 overflow-x-auto"></div>
     </div>
-  </div>
 </section>
 
 <script>
-(function() {
-  // Configuración de horarios por día
-  const scheduleConfig = {
-    Monday: {
-      available: true,
-      slots: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
-    },
-    Tuesday: {
-      available: true,
-      slots: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
-    },
-    Wednesday: {
-      available: true,
-      slots: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
-    },
-    Thursday: {
-      available: true,
-      slots: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']
-    },
-    Friday: {
-      available: true,
-      slots: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '20:00', '20:00']
-    },
-    Saturday: {
-      available: true,
-      slots: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']
-    },
-    Sunday: {
-      available: false,
-      slots: []
-    }
-  };
+    const products = [
+        { brand: 'Samsung', name: 'Galaxy S24 Ultra 256GB', price: '$29,999', stars: '★★★★★', reviews: '1 review', img: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?w=300&h=300&fit=crop' },
+        { brand: 'Apple', name: 'iPhone 15 Pro Max 512GB', price: '$38,999', stars: '★★★★★', reviews: '3 reviews', img: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=300&h=300&fit=crop' },
+        { brand: 'Xiaomi', name: 'Xiaomi 14 Pro 256GB', price: '$18,499', stars: '★★★★☆', reviews: '2 reviews', img: 'https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=300&h=300&fit=crop' },
+        { brand: 'OnePlus', name: 'OnePlus 12 256GB 5G', price: '$16,999', stars: '★★★★★', reviews: '5 reviews', img: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop' },
+        { brand: 'Motorola', name: 'Moto Edge 40 Pro 256GB', price: '$14,299', stars: '★★★★☆', reviews: '4 reviews', img: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=300&h=300&fit=crop' },
+        { brand: 'Google', name: 'Pixel 8 Pro 128GB', price: '$22,499', stars: '★★★★★', reviews: '6 reviews', img: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=300&h=300&fit=crop' }
+    ];
 
-  // Elementos del formulario
-  const daySelect = document.querySelector('select[name="day"]');
-  const timeInput = document.querySelector('input[name="time"]');
-  const form = document.getElementById('ct-form');
+    document.getElementById('product-grid').innerHTML = products.map((p, index) => {
+        const ids = [101, 102, 103, 104, 105, 106];
+        const productId = ids[index] || 101;
 
-  if (!daySelect || !timeInput) return;
-
-  // Crear elemento de notificación
-  const notification = document.createElement('div');
-  notification.className = 'time-notification';
-  notification.innerHTML = 'Please select a day first';
-  document.body.appendChild(notification);
-
-  let notificationTimeout;
-
-  function showNotification(message) {
-    // Limpiar timeout anterior
-    if (notificationTimeout) {
-      clearTimeout(notificationTimeout);
-    }
-
-    // Actualizar mensaje y mostrar
-    notification.textContent = message;
-    notification.classList.add('visible');
-
-    // Ocultar después de 2.5 segundos
-    notificationTimeout = setTimeout(() => {
-      notification.classList.remove('visible');
-    }, 2500);
-  }
-
-  // Crear el modal de horarios
-  let timePickerModal = null;
-  let currentDay = '';
-
-  function createTimePickerModal(day) {
-    if (timePickerModal) {
-      updateModalContent(day);
-      timePickerModal.classList.add('visible');
-      return;
-    }
-
-    const modal = document.createElement('div');
-    modal.className = 'time-picker-modal';
-    modal.innerHTML = `
-      <div class="time-picker-overlay"></div>
-      <div class="time-picker-container">
-        <div class="time-picker-header">
-          <h3>Available times for <span class="time-picker-day">${day}</span></h3>
-          <button class="time-picker-close">&times;</button>
+        return `
+        <div class="product-card flex-shrink-0 w-44 md:w-52 overflow-hidden bg-black bg-opacity-5 rounded-xl" data-id="${productId}">
+            <div class="prod-img-wrap h-44 md:h-52 overflow-hidden">
+                <img src="${p.img}" alt="${p.brand}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+            </div>
+            <div class="p-3">
+                <p class="text-xs mb-1" style="color: var(--text-secondary);">${p.brand}</p>
+                <h4 class="font-semibold text-sm leading-tight mb-1 truncate" style="color: var(--text-primary);">${p.name}</h4>
+                <div class="stars text-xs mb-1 text-yellow-400">${p.stars}</div>
+                <p class="text-xs mb-2" style="color: var(--text-secondary);">${p.reviews}</p>
+                <span class="orbitron font-bold text-sm" style="color: var(--accent-primary);">${p.price}</span>
+            </div>
         </div>
-        <div class="time-picker-grid">
-          <!-- Los horarios se insertan aquí dinámicamente -->
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(modal);
-    timePickerModal = modal;
-
-    modal.querySelector('.time-picker-overlay').addEventListener('click', closeModal);
-    modal.querySelector('.time-picker-close').addEventListener('click', closeModal);
-
-    updateModalContent(day);
-    modal.classList.add('visible');
-  }
-
-  function updateModalContent(day) {
-    if (!timePickerModal) return;
-    
-    const daySpan = timePickerModal.querySelector('.time-picker-day');
-    const grid = timePickerModal.querySelector('.time-picker-grid');
-    
-    if (daySpan) daySpan.textContent = day;
-    if (!grid) return;
-
-    const schedule = scheduleConfig[day];
-    
-    if (!schedule || !schedule.available) {
-      grid.innerHTML = '<div class="time-picker-no-slots">No available times for this day</div>';
-      return;
-    }
-
-    grid.innerHTML = schedule.slots.map(time => {
-      const hour = parseInt(time.split(':')[0]);
-      const ampm = hour >= 12 ? 'PM' : 'AM';
-      const hour12 = hour > 12 ? hour - 12 : hour;
-      const displayTime = `${hour12}:00 ${ampm}`;
-      
-      return `
-        <button class="time-picker-slot" data-time="${time}">
-          ${displayTime}
-        </button>
-      `;
+        `;
     }).join('');
+</script>
 
-    grid.querySelectorAll('.time-picker-slot').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const selectedTime = this.dataset.time;
-        timeInput.value = selectedTime;
-        timeInput.dispatchEvent(new Event('change', { bubbles: true }));
-        closeModal();
-      });
-    });
-  }
-
-  function closeModal() {
-    if (timePickerModal) {
-      timePickerModal.classList.remove('visible');
-    }
-  }
-
-  // Modificar el input de tiempo
-  timeInput.readOnly = true;
-  timeInput.placeholder = 'Click to select time';
-  timeInput.classList.add('time-picker-trigger');
-
-  // Evento click en el input de tiempo
-  timeInput.addEventListener('click', function() {
-    const selectedDay = daySelect.value;
+    <!-- ==================== AUDIO & SOUND ==================== -->
+<section id="ofertas-section" class="audio-section py-14 px-6" style="background: var(--bg-secondary);">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
     
-    if (!selectedDay) {
-      showNotification('Please select a day first');
-      // Opcional: animar el campo día para llamar la atención
-      daySelect.style.transition = 'border-color 0.2s';
-      daySelect.style.borderColor = '#bf7c1a';
-      setTimeout(() => {
-        daySelect.style.borderColor = '';
-      }, 500);
-      return;
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            <div class="relative overflow-hidden rounded-2xl min-h-72 lg:min-h-full group cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=700&h=500&fit=crop&crop=center" alt="Audio & Sound" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" style="min-height: 280px;">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-purple-900/40 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-center p-10 text-white">
+                    <p class="text-xs tracking-[0.3em] uppercase mb-2 text-purple-300">Colección 2024</p>
+                    <h2 class="orbitron text-3xl md:text-4xl font-bold mb-3 leading-tight">AUDIO<br>&amp; SOUND</h2>
+                    <p class="text-white/80 text-sm max-w-xs mb-6">Sumérgete en una experiencia auditiva sin precedentes con nuestra selección premium.</p>
+                    <a href="tienda.html?filter=audio" class="self-start px-5 py-2 rounded-lg text-sm font-semibold border border-white/50 hover:bg-white/15 transition-colors" onclick="navigateWithFilter('tienda.html?filter=audio'); return false;">Explorar →</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-4 overflow-hidden">
+                <div class="flex items-center justify-between mb-1">
+                    <h3 class="orbitron font-bold text-lg" style="color: var(--text-primary);">Destacados</h3>
+                    <a href="tienda.html?filter=audio" class="text-xs" style="color: var(--accent-primary);" onclick="navigateWithFilter('tienda.html?filter=audio'); return false;">Ver todo →</a>
+                </div>
+                
+                <div id="product-container" class="products-row flex gap-6 overflow-x-auto pb-4 snap-x no-scrollbar">
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const items = [
+        { brand: 'Sony', name: 'WH-1000XM5 Noise Cancelling', price: '$9,799', img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=600&fit=crop' },
+        { brand: 'JBL', name: 'Charge 5 Portable Speaker', price: '$4,299', img: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=600&fit=crop' },
+        { brand: 'Apple', name: 'AirPods Pro 2nd Gen', price: '$7,499', img: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&h=600&fit=crop' },
+        { brand: 'Bose', name: 'QuietComfort Ultra', price: '$8,999', img: 'https://images.unsplash.com/photo-1545127398-14699f92334b?w=500&h=600&fit=crop' },
+        { brand: 'Marshall', name: 'Emberton II Black', price: '$3,850', img: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&h=600&fit=crop' }
+    ];
+
+    const audioIds = [501, 502, 503, 504, 505]; // Sony, JBL, Apple, Bose, Marshall
+    document.getElementById('product-container').innerHTML = items.map((p, i) => `
+        <div class="product-card flex-shrink-0 w-48 md:w-64 snap-start rounded-xl overflow-hidden flex flex-col" style="background: var(--bg-card); border: 1px solid var(--border-color);" data-id="${audioIds[i]}">
+            
+            <div class="prod-img-wrap h-40 md:h-80 flex items-center justify-center overflow-hidden">
+                <img src="${p.img}" alt="${p.brand}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+
+            <div class="p-3">
+                <p class="text-[10px] md:text-xs mb-0.5" style="color: var(--text-secondary);">${p.brand}</p>
+                <h4 class="font-semibold text-xs leading-tight mb-1" style="color: var(--text-primary);">${p.name}</h4>
+                <div class="stars text-[10px] mb-1">★★★★★</div>
+                <span class="orbitron font-bold text-sm" style="color: var(--accent-primary);">${p.price}</span>
+            </div>
+        </div>
+    `).join('');
+</script>
+
+<!-- ==================== TESTIMONIOS / REVIEWS ==================== -->
+<section class="py-14 px-6" style="background: var(--bg-primary);">
+    <div class="container mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-10 reviews-header">
+            <h2 class="orbitron text-2xl md:text-3xl font-bold mb-2" style="color: var(--text-primary);">
+                WHAT OUR CUSTOMERS SAY
+            </h2>
+            <p class="text-sm" style="color: var(--text-secondary);">
+                Real experiences from verified customers
+            </p>
+        </div>
+
+        <!-- Navigation Desktop -->
+        <div class="hidden md:flex justify-end items-center gap-3 mb-6 reviews-nav">
+            <button class="review-nav-btn" id="reviewPrevBtn" aria-label="Previous">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <button class="review-nav-btn" id="reviewNextBtn" aria-label="Next">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Slider -->
+        <div class="reviews-slider flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory" id="reviewsSlider">
+            <!-- Los testimonios se generarán dinámicamente -->
+        </div>
+
+        <!-- Progress bar (móvil) -->
+        <div class="md:hidden mt-6 review-progress-container">
+            <div class="review-scroll-progress" id="reviewScrollProgress"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CSS Específico para Reviews -->
+<style>
+/* ========== REVIEWS SLIDER ========== */
+.reviews-slider {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+.reviews-slider::-webkit-scrollbar {
+    display: none;
+}
+
+/* ========== REVIEW CARD ========== */
+.review-card {
+    min-width: 280px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.review-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+    transform: translateY(-4px);
+}
+
+/* ========== STARS ========== */
+.review-stars {
+    color: var(--accent-primary);
+    letter-spacing: 2px;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ========== NAV BUTTONS ========== */
+.review-nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-nav-btn:hover:not(:disabled) {
+    border-color: var(--accent-primary);
+    background: var(--bg-secondary);
+    transform: scale(1.1);
+}
+
+.review-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ========== PROGRESS BAR ========== */
+.review-progress-container {
+    height: 2px;
+    background: var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.review-scroll-progress {
+    height: 2px;
+    background: var(--accent-primary);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+    width: 0;
+}
+
+/* ========== AVATAR ========== */
+.review-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+}
+
+/* ========== ANIMACIONES ========== */
+.reviews-header,
+.reviews-nav {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.review-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (min-width: 768px) {
+    .review-card {
+        min-width: 300px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .review-card {
+        min-width: 320px;
+    }
+}
+</style>
+
+<!-- JavaScript para Reviews -->
+<script>
+(function() {
+    // ==================== DATA ====================
+    const reviewsData = [
+        {
+            name: "Carlos M.",
+            avatar: "Felix",
+            rating: 5,
+            text: "Excelente servicio y productos de primera calidad. Llegó antes de lo esperado y bien empacado."
+        },
+        {
+            name: "Ana L.",
+            avatar: "Ana",
+            rating: 5,
+            text: "Los precios son muy competitivos y la atención al cliente fue increíble. Definitivamente volvería."
+        },
+        {
+            name: "Miguel R.",
+            avatar: "Miguel",
+            rating: 5,
+            text: "Mi laptop llegó perfecta y el soporte técnico me ayudó con la configuración inicial. 10/10."
+        },
+        {
+            name: "Laura P.",
+            avatar: "Laura",
+            rating: 5,
+            text: "Compré auriculares Sony y son exactamente lo que buscaba. La relación calidad-precio es perfecta."
+        },
+        {
+            name: "Ricardo S.",
+            avatar: "Ricardo",
+            rating: 5,
+            text: "Increíble experiencia de compra. El proceso fue rápido y el seguimiento del envío muy preciso."
+        },
+        {
+            name: "Sofia G.",
+            avatar: "Sofia",
+            rating: 5,
+            text: "La mejor tienda online que he usado. Los productos son auténticos y el precio justo."
+        },
+        {
+            name: "Daniel T.",
+            avatar: "Daniel",
+            rating: 5,
+            text: "Servicio postventa excelente. Tuve una duda y me la resolvieron en minutos. Muy recomendado."
+        }
+    ];
+
+    // ==================== HELPER FUNCTIONS ====================
+    function createStars(rating) {
+        return '★'.repeat(rating) + '☆'.repeat(5 - rating);
     }
 
-    if (!scheduleConfig[selectedDay]?.available) {
-      showNotification('No appointments available for this day');
-      return;
+    function createReviewCard({ name, avatar, rating, text }) {
+        return `
+            <div class="review-card snap-center">
+                <div class="review-stars">${createStars(rating)}</div>
+                <p class="text-sm mb-4 leading-relaxed" style="color: var(--text-secondary);">
+                    "${text}"
+                </p>
+                <div class="flex items-center gap-3">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${avatar}" 
+                         alt="${name}" 
+                         class="review-avatar">
+                    <div>
+                        <p class="font-bold text-sm" style="color: var(--text-primary);">${name}</p>
+                        <p class="text-xs" style="color: var(--text-secondary);">Cliente verificado</p>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
-    currentDay = selectedDay;
-    createTimePickerModal(selectedDay);
-  });
+    // ==================== RENDER ====================
+    const reviewsContainer = document.getElementById('reviewsSlider');
+    if (reviewsContainer) {
+        reviewsContainer.innerHTML = reviewsData.map(createReviewCard).join('');
+    }
 
-  // Si cambia el día y ya hay una hora seleccionada, limpiarla si no está disponible
-  daySelect.addEventListener('change', function() {
-    const selectedDay = this.value;
-    const currentTime = timeInput.value;
+    // ==================== NAVIGATION ====================
+    const prevBtn = document.getElementById('reviewPrevBtn');
+    const nextBtn = document.getElementById('reviewNextBtn');
+    const slider = reviewsContainer;
+
+    function updateButtons() {
+        if (!slider || !prevBtn || !nextBtn) return;
+        const scrollLeft = slider.scrollLeft;
+        const maxScroll = slider.scrollWidth - slider.clientWidth;
+        
+        prevBtn.disabled = scrollLeft <= 0;
+        nextBtn.disabled = scrollLeft >= maxScroll - 10;
+    }
+
+    if (prevBtn && slider) {
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+    }
+
+    if (nextBtn && slider) {
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+    }
+
+    if (slider) {
+        slider.addEventListener('scroll', updateButtons);
+        updateButtons();
+    }
+
+    // ==================== PROGRESS BAR ====================
+    const scrollProgress = document.getElementById('reviewScrollProgress');
     
-    if (currentTime && selectedDay) {
-      const schedule = scheduleConfig[selectedDay];
-      if (!schedule?.slots.includes(currentTime)) {
-        timeInput.value = '';
-      }
+    if (slider && scrollProgress) {
+        slider.addEventListener('scroll', () => {
+            const scrollLeft = slider.scrollLeft;
+            const maxScroll = slider.scrollWidth - slider.clientWidth;
+            const progress = (scrollLeft / maxScroll) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
     }
-  });
 
-  // Cerrar modal con tecla Escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && timePickerModal?.classList.contains('visible')) {
-      closeModal();
+    // ==================== GSAP ANIMATIONS ====================
+    if (typeof gsap !== 'undefined') {
+        // Animate header
+        gsap.to('.reviews-header', {
+            scrollTrigger: {
+                trigger: '.reviews-header',
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Animate nav buttons
+        gsap.to('.reviews-nav', {
+            scrollTrigger: {
+                trigger: '.reviews-nav',
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: 0.2,
+            ease: 'power3.out'
+        });
+
+        // Animate review cards
+        gsap.utils.toArray('.review-card').forEach((card, i) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 95%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                delay: i * 0.08,
+                ease: 'power2.out'
+            });
+        });
     }
-  });
-
 })();
 </script>
 
-<!-- Estilos para el modal y la notificación -->
-<style>
-/* Notificación elegante */
-.time-notification {
-  position: fixed;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  background: #1a1714;
-  border: 1px solid #bf7c1a;
-  border-left: 4px solid #bf7c1a;
-  color: #f0ece4;
-  padding: 12px 24px;
-  font-family: 'Raleway', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(191,124,26,0.2);
-  z-index: 10001;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
+<section class="smartwatch-section py-14 px-6" style="background: var(--bg-secondary);">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            
+            <div>
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="orbitron text-2xl md:text-3xl font-bold" style="color: var(--text-primary);">SMARTWATCH</h2>
+                    <a href="tienda.html?filter=smartwatch" class="text-xs" style="color: var(--accent-primary);" onclick="navigateWithFilter('tienda.html?filter=smartwatch'); return false;">Ver todo →</a>
+                </div>
+                <div id="smartwatch-track" class="products-row flex gap-4 pb-2 overflow-x-auto no-scrollbar snap-x"></div>
+            </div>
 
-.time-notification.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
+            <div class="relative overflow-hidden rounded-2xl h-72 lg:h-96 group cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&h=500&fit=crop" alt="Smartwatch promo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-8 text-white">
+                    <p class="text-xs tracking-widest uppercase mb-2 text-cyan-400">Nueva colección</p>
+                    <h3 class="orbitron text-2xl font-bold mb-2">ESTILO &amp;<br>RENDIMIENTO</h3>
+                    <p class="text-white/75 text-sm mb-4">Monitorea tu salud con tecnología de vanguardia.</p>
+                    <a href="tienda.html?filter=smartwatch" class="px-5 py-2 text-sm font-semibold rounded-lg border border-cyan-400 text-cyan-400 hover:bg-cyan-400/15 transition-colors" onclick="navigateWithFilter('tienda.html?filter=smartwatch'); return false;">Descubrir →</a>
+                </div>
+            </div>
 
-/* Modal de horarios */
-.time-picker-modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 9999;
-  font-family: 'Raleway', sans-serif;
-}
+        </div>
+    </div>
+</section>
 
-.time-picker-modal.visible {
-  display: block;
-}
+<script>
+    // Datos Unificados
+    const storeData = {
+        reviews: [
+            { n: "Carlos M.", t: "Excelente servicio y calidad. Llegó antes de lo esperado.", s: "Carlos" },
+            { n: "Ana L.", t: "Precios competitivos y atención increíble. Volveré.", s: "Ana" },
+            { n: "Miguel R.", t: "Mi laptop llegó perfecta. El soporte técnico es 10/10.", s: "Miguel" }
+        ],
+        watches: [
+            { b: "Apple", n: "Watch Series 9 45mm", p: "$12,999", i: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400&h=400&fit=crop" },
+            { b: "Samsung", n: "Galaxy Watch 6 Classic", p: "$9,499", i: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&h=400&fit=crop" },
+            { b: "Garmin", n: "Fenix 7 Pro Solar", p: "$18,299", i: "https://images.unsplash.com/photo-1544117519-31a4b719223d?w=400&h=400&fit=crop" }
+        ]
+    };
 
-.time-picker-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(4px);
-}
+    const watchIds = [601, 602, 603]; // Apple, Samsung, Garmin
+    document.getElementById('smartwatch-track').innerHTML = storeData.watches.map((p, i) => `
+        <div class="product-card flex-shrink-0 w-44 md:w-52 snap-start" data-id="${watchIds[i]}">
+            <div class="prod-img-wrap h-44 flex items-center justify-center overflow-hidden rounded-lg">
+                <img src="${p.i}" alt="${p.n}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+            </div>
+            <div class="p-3">
+                <p class="text-xs mb-0.5" style="color: var(--text-secondary);">${p.b}</p>
+                <h4 class="font-semibold text-sm leading-tight mb-1" style="color: var(--text-primary);">${p.n}</h4>
+                <div class="stars text-xs mb-1">★★★★★</div>
+                <span class="orbitron font-bold text-sm" style="color: var(--accent-primary);">${p.p}</span>
+            </div>
+        </div>
+    `).join('');
 
-.time-picker-container {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 500px;
-  background: #141210;
-  border: 1px solid rgba(191,124,26,0.3);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(191,124,26,0.2);
-  z-index: 10000;
-}
+    // Render Testimonios (no usado actualmente, se mantiene por si acaso)
+    if (document.getElementById('rev-track')) {
+        document.getElementById('rev-track').innerHTML = storeData.reviews.map(r => `
+            <div class="snap-item w-[300px] p-6 rounded-xl" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                <div class="text-yellow-500 text-xs mb-3">★★★★★</div>
+                <p class="text-sm text-gray-400 mb-4 italic leading-relaxed">"${r.t}"</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${r.s}" class="w-9 h-9 rounded-full bg-gray-800">
+                    <div class="text-xs text-white"><strong>${r.n}</strong><br><span class="text-gray-500 text-[10px]">Verificado</span></div>
+                </div>
+            </div>
+        `).join('');
+    }
 
-.time-picker-header {
-  padding: 20px 24px;
-  border-bottom: 1px solid rgba(191,124,26,0.2);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #0a0908;
-}
+    if (document.getElementById('rev-dots')) {
+        document.getElementById('rev-dots').innerHTML = storeData.reviews.map((_, i) => `<div class="dot ${i===0?'active':''}"></div>`).join('');
+    }
 
-.time-picker-header h3 {
-  font-family: 'Rye', serif;
-  font-size: 1.2rem;
-  color: #f0ece4;
-  margin: 0;
-  letter-spacing: 0.5px;
-}
+    // Función de Scroll
+    function sideScroll(id, dir) {
+        const el = document.getElementById(id);
+        const amt = el.children[0].offsetWidth + 20;
+        el.scrollBy({ left: amt * dir, behavior: 'smooth' });
+    }
+</script>
 
-.time-picker-header .time-picker-day {
-  color: #bf7c1a;
-  font-style: italic;
-}
+    <!-- ==================== NUESTRA HISTORIA & UBICACIÓN ==================== -->
+<section class="py-16 px-6" style="background: var(--bg-primary);">
+    <div class="container mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16 story-header">
+            <p class="text-sm mb-2 tracking-widest" style="color: var(--accent-primary);">DESDE 2018</p>
+            <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4" style="color: var(--text-primary);">
+                NUESTRA HISTORIA
+            </h2>
+            <p class="text-base md:text-lg max-w-2xl mx-auto" style="color: var(--text-secondary);">
+                Más que una tienda, somos una comunidad tech en el corazón de Santo Domingo
+            </p>
+        </div>
 
-.time-picker-close {
-  background: none;
-  border: none;
-  color: rgba(240,236,228,0.4);
-  font-size: 2rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0;
-  width: 32px; height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s;
-}
+        <!-- Historia Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+            <!-- Texto Historia -->
+            <div class="story-content flex flex-col justify-center">
+                <div class="space-y-6">
+                    <div class="story-block">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="story-icon-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="orbitron text-xl font-bold mb-3" style="color: var(--text-primary);">
+                                    El Comienzo
+                                </h3>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    Todo comenzó en 2018 con una visión clara: democratizar el acceso a la tecnología de vanguardia en República Dominicana. Lo que inició como un pequeño local en el distrito comercial de Santo Domingo, rápidamente se convirtió en el destino preferido para entusiastas de la tecnología.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-.time-picker-close:hover {
-  color: #bf7c1a;
-}
+                    <div class="story-block">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="story-icon-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="orbitron text-xl font-bold mb-3" style="color: var(--text-primary);">
+                                    Hoy en Día
+                                </h3>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    Con más de 50,000 clientes satisfechos, nos hemos convertido en líderes del mercado tech dominicano. Ofrecemos desde los últimos smartphones hasta sistemas gaming de alta gama, respaldados por un equipo de expertos apasionados por la tecnología.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-.time-picker-grid {
-  padding: 24px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  max-height: 350px;
-  overflow-y: auto;
-  background: #141210;
-}
+                    <div class="story-block">
+                        <div class="flex items-start gap-4">
+                            <div class="story-icon-wrapper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="orbitron text-xl font-bold mb-3" style="color: var(--text-primary);">
+                                    Nuestro Compromiso
+                                </h3>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    Garantía extendida en todos nuestros productos, servicio técnico especializado, y asesoría personalizada. Tu satisfacción es nuestra prioridad, por eso cada compra viene con soporte técnico gratuito durante el primer año.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-.time-picker-slot {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(191,124,26,0.2);
-  color: rgba(240,236,228,0.7);
-  padding: 12px 6px;
-  font-family: 'Raleway', sans-serif;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 0;
-  text-align: center;
-}
+            <!-- Imagen Principal -->
+            <div class="story-image-main">
+                <div class="relative overflow-hidden rounded-3xl h-full min-h-[400px] group">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop" 
+                         alt="TechStore Interior" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <p class="text-sm mb-2 tracking-wider" style="color: var(--accent-primary);">SHOWROOM</p>
+                        <h4 class="orbitron text-2xl font-bold">
+                            Experiencia Premium
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-.time-picker-slot:hover {
-  background: rgba(191,124,26,0.15);
-  border-color: #bf7c1a;
-  color: #f0ece4;
-}
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 stats-grid">
+            <div class="stat-card text-center p-6 rounded-2xl" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                <div class="orbitron text-3xl md:text-4xl font-bold mb-2" style="color: var(--accent-primary);">7</div>
+                <p class="text-sm" style="color: var(--text-secondary);">Años en el Mercado</p>
+            </div>
+            <div class="stat-card text-center p-6 rounded-2xl" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                <div class="orbitron text-3xl md:text-4xl font-bold mb-2" style="color: var(--accent-primary);">50K+</div>
+                <p class="text-sm" style="color: var(--text-secondary);">Clientes Felices</p>
+            </div>
+            <div class="stat-card text-center p-6 rounded-2xl" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                <div class="orbitron text-3xl md:text-4xl font-bold mb-2" style="color: var(--accent-primary);">2K+</div>
+                <p class="text-sm" style="color: var(--text-secondary);">Productos en Stock</p>
+            </div>
+            <div class="stat-card text-center p-6 rounded-2xl" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                <div class="orbitron text-3xl md:text-4xl font-bold mb-2" style="color: var(--accent-primary);">24/7</div>
+                <p class="text-sm" style="color: var(--text-secondary);">Soporte Online</p>
+            </div>
+        </div>
 
-.time-picker-no-slots {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 40px 20px;
-  color: #8a8580;
-  font-style: italic;
-}
+        <!-- Ubicación -->
+        <div class="location-section">
+            <div class="text-center mb-12 location-header">
+                <p class="text-sm mb-2 tracking-widest" style="color: var(--accent-primary);">VISÍTANOS</p>
+                <h2 class="orbitron text-2xl md:text-3xl font-bold mb-3" style="color: var(--text-primary);">
+                    NUESTRA UBICACIÓN
+                </h2>
+                <p class="text-base" style="color: var(--text-secondary);">
+                    En el corazón del distrito comercial de Santo Domingo
+                </p>
+            </div>
 
-/* Estilo para el campo de tiempo */
-.time-picker-trigger {
-  cursor: pointer !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23bf7c1a' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cpolyline points='12 6 12 12 16 14'%3E%3C/polyline%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: right 12px center !important;
-  background-size: 18px !important;
-}
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <!-- Info & Contacto -->
+                <div class="location-info space-y-6">
+                    <div class="info-card p-6 rounded-2xl" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                        <div class="flex items-start gap-4">
+                            <div class="location-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-primary);">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2" style="color: var(--text-primary);">Dirección</h4>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    Av. Winston Churchill #1234<br>
+                                    Bella Vista, Santo Domingo<br>
+                                    República Dominicana 10107
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-/* Scroll personalizado */
-.time-picker-grid::-webkit-scrollbar {
-  width: 5px;
-}
+                    <div class="info-card p-6 rounded-2xl" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                        <div class="flex items-start gap-4">
+                            <div class="location-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-primary);">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2" style="color: var(--text-primary);">Horario</h4>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    Lunes - Viernes: 9:00 AM - 8:00 PM<br>
+                                    Sábados: 10:00 AM - 7:00 PM<br>
+                                    Domingos: 11:00 AM - 5:00 PM
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-.time-picker-grid::-webkit-scrollbar-track {
-  background: #1a1714;
-}
+                    <div class="info-card p-6 rounded-2xl" style="background: var(--bg-card); border: 1px solid var(--border-color);">
+                        <div class="flex items-start gap-4">
+                            <div class="location-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-primary);">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2" style="color: var(--text-primary);">Contacto</h4>
+                                <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                    Teléfono: 809-8786-115<br>
+                                    Email: info@techstore.do
+                                    <br>
+                                    <span class="text-green-400">WhatsApp: +1 (809) 8786-115</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-.time-picker-grid::-webkit-scrollbar-thumb {
-  background: #bf7c1a;
-}
+                <!-- Galería de Imágenes + Botón -->
+                <div class="location-gallery">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="gallery-item rounded-2xl overflow-hidden h-48 group">
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80" 
+                                 alt="Store Front" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="gallery-item rounded-2xl overflow-hidden h-48 group">
+                            <img src="https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=400&h=400&fit=crop" 
+                                 alt="Tech Display" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="gallery-item rounded-2xl overflow-hidden h-64 col-span-2 group relative">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop" 
+                                 alt="Team Working" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                                <p class="text-white font-bold orbitron">Nuestro Equipo Experto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botón con efecto glitch original -->
+                    <div class="mt-8 text-left">
+                        <a href="tienda.html" class="inline-block" style="text-decoration: none;">
+                            <button class="btn-glitch" data-text="NAVEGAR">
+                                <i class="fas fa-location-arrow"></i>
+                                Navegar a Tienda
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-/* Animación sutil para el campo día cuando se requiere */
-@keyframes gentlePulse {
-  0%, 100% { border-color: rgba(191,124,26,0.2); }
-  50% { border-color: #bf7c1a; }
-}
+<!-- JavaScript -->
+<script>
+(function() {
+    if (typeof gsap !== 'undefined') {
+        // Story header
+        gsap.to('.story-header', {
+            scrollTrigger: {
+                trigger: '.story-header',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
 
-/* Responsive */
-@media (max-width: 480px) {
-  .time-picker-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-</style>
+        // Story content
+        gsap.to('.story-content', {
+            scrollTrigger: {
+                trigger: '.story-content',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
 
-<!-- ══ FOOTER ══ -->
-<footer class="site-footer bg-[#0a0908] border-t border-[#1e1d1a] pt-[60px] px-[6%] relative">
-  <div class="footer-inner relative z-[1] max-w-[1100px] mx-auto">
-    <div class="footer-cols grid pb-12 border-b border-[#1e1d1a]" style="grid-template-columns:1.2fr 1.3fr 1fr 1fr;gap:40px;">
-      <!-- Columna 1: Logo -->
-      <div>
-        <img src="img/logo.png" alt="Learn2Barber" class="h-[58px] w-auto block mb-2" onerror="this.style.display='none'"/>
-        <span class="font-rye text-[.95rem] text-gold tracking-[.04em] block leading-[1.2]">Learn2Barber</span>
-        <span class="font-rally text-[.58rem] text-[#3e3d3a] tracking-[.14em] uppercase block mb-[18px]">online barbering academy</span>
-        <div class="flex gap-[7px]">
-          <a href="#" class="w-7 h-7 rounded-full border border-[#2a2925] flex items-center justify-center text-[#5a5955] no-underline transition-all duration-200 hover:border-gold hover:text-gold"><svg width="11" height="11"><use href="#ico-fb"/></svg></a>
-          <a href="#" class="w-7 h-7 rounded-full border border-[#2a2925] flex items-center justify-center text-[#5a5955] no-underline transition-all duration-200 hover:border-gold hover:text-gold"><svg width="12" height="12"><use href="#ico-yt"/></svg></a>
-          <a href="#" class="w-7 h-7 rounded-full border border-[#2a2925] flex items-center justify-center text-[#5a5955] no-underline transition-all duration-200 hover:border-gold hover:text-gold"><svg width="11" height="11"><use href="#ico-ig"/></svg></a>
+        // Story blocks
+        gsap.utils.toArray('.story-block').forEach((block, i) => {
+            gsap.to(block, {
+                scrollTrigger: {
+                    trigger: block,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                delay: i * 0.15,
+                ease: 'power2.out'
+            });
+        });
+
+        // Story image
+        gsap.to('.story-image-main', {
+            scrollTrigger: {
+                trigger: '.story-image-main',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Stats grid
+        gsap.to('.stats-grid', {
+            scrollTrigger: {
+                trigger: '.stats-grid',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Animate each stat card
+        gsap.utils.toArray('.stat-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse'
+                },
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.5,
+                delay: i * 0.1,
+                ease: 'back.out(1.4)'
+            });
+        });
+
+        // Location header
+        gsap.to('.location-header', {
+            scrollTrigger: {
+                trigger: '.location-header',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Location info
+        gsap.to('.location-info', {
+            scrollTrigger: {
+                trigger: '.location-info',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Location gallery
+        gsap.to('.location-gallery', {
+            scrollTrigger: {
+                trigger: '.location-gallery',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+
+        // Gallery items stagger
+        gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse'
+                },
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.5,
+                delay: i * 0.1,
+                ease: 'power2.out'
+            });
+        });
+    }
+})();
+</script>
+
+    <!-- ══════════════════════════════════════════ FOOTER ══ -->
+<footer style="background:var(--bg-secondary);border-top:1px solid var(--border-color)">
+  <div class="container mx-auto px-4 md:px-6 py-14">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center space-x-2 mb-4">
+          <div class="orbitron text-xl font-bold" style="color:var(--accent-primary)">TECH</div>
+          <div class="orbitron text-xl font-bold text-white">STORE</div>
+        </div>
+        <p class="text-xs leading-relaxed mb-4" style="color:var(--text-secondary);opacity:.5">Tu destino tecnológico de confianza. Calidad garantizada en cada producto.</p>
+        <div class="flex gap-3">
+          <a href="https://wa.me/18098786115" class="w-8 h-8 flex items-center justify-center" style="border:1px solid var(--border-color);color:var(--text-secondary);transition:all .2s"><i class="fab fa-whatsapp text-sm"></i></a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center" style="border:1px solid var(--border-color);color:var(--text-secondary);transition:all .2s"><i class="fab fa-instagram text-sm"></i></a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center" style="border:1px solid var(--border-color);color:var(--text-secondary);transition:all .2s"><i class="fab fa-facebook-f text-sm"></i></a>
         </div>
       </div>
-      
-      <!-- Columna 2: Contact (ahora en segundo lugar) -->
       <div>
-        <h5 class="font-rally font-bold text-[.78rem] tracking-[.1em] uppercase text-twht mb-4">Contact</h5>
-        <div class="flex gap-[10px] items-start mb-3"><svg class="w-[14px] h-[14px] flex-shrink-0 mt-px text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span class="font-rally text-[.75rem] text-[#5a5955] leading-[1.6]">+1 (809) 878-6115</span></div>
-        <div class="flex gap-[10px] items-start mb-3"><svg class="w-[14px] h-[14px] flex-shrink-0 mt-px text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="font-rally text-[.75rem] text-[#5a5955] leading-[1.6]">info@learn2barber.com</span></div>
-        <div class="flex gap-[10px] items-start"><svg class="w-[14px] h-[14px] flex-shrink-0 mt-px text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="font-rally text-[.75rem] text-[#5a5955] leading-[1.6]">142 Brooklyn Street<br/>New York, NY 11201</span></div>
-      </div>
-      
-      <!-- Columna 3: Links -->
-      <div>
-        <h5 class="font-rally font-bold text-[.78rem] tracking-[.1em] uppercase text-twht mb-4">Links</h5>
-        <ul class="list-none p-0 m-0">
-          <li class="mb-[9px]"><a href="#hero" class="font-rally text-[.78rem] text-[#5a5955] no-underline transition-colors duration-200 hover:text-gold">Home</a></li>
-          <li class="mb-[9px]"><a href="#about" class="font-rally text-[.78rem] text-[#5a5955] no-underline transition-colors duration-200 hover:text-gold">About Us</a></li>
-          <li class="mb-[9px]"><a href="#services" class="font-rally text-[.78rem] text-[#5a5955] no-underline transition-colors duration-200 hover:text-gold">Services</a></li>
-          <li class="mb-[9px]"><a href="#portfolio" class="font-rally text-[.78rem] text-[#5a5955] no-underline transition-colors duration-200 hover:text-gold">Gallery</a></li>
+        <h5 class="orbitron text-xs font-bold text-white mb-4 tracking-widest">TIENDA</h5>
+        <ul class="space-y-2 text-xs" style="color:var(--text-secondary);opacity:.6">
+          <li><a href="tienda.html?filter=smartphones" style="transition:color .2s" onmouseover="this.style.color='var(--accent-primary)'" onmouseout="this.style.color=''">Smartphones</a></li>
+          <li><a href="tienda.html?filter=laptops" style="transition:color .2s" onmouseover="this.style.color='var(--accent-primary)'" onmouseout="this.style.color=''">Laptops</a></li>
+          <li><a href="tienda.html?filter=macbooks" style="transition:color .2s" onmouseover="this.style.color='var(--accent-primary)'" onmouseout="this.style.color=''">Tablets</a></li>
+          <li><a href="tienda.html?filter=audio" style="transition:color .2s" onmouseover="this.style.color='var(--accent-primary)'" onmouseout="this.style.color=''">Audio</a></li>
+          <li><a href="tienda.html?filter=drones" style="transition:color .2s" onmouseover="this.style.color='var(--accent-primary)'" onmouseout="this.style.color=''">Drones</a></li>
         </ul>
       </div>
-      
-      <!-- Columna 4: More -->
       <div>
-        <h5 class="font-rally font-bold text-[.78rem] tracking-[.1em] uppercase text-twht mb-4">More</h5>
-        <ul class="list-none p-0 m-0">
-          <li class="mb-[9px]"><a href="#team" class="font-rally text-[.78rem] text-[#5a5955] no-underline transition-colors duration-200 hover:text-gold">Our Team</a></li>
-          <li class="mb-[9px]"><a href="#videos-section" class="font-rally text-[.78rem] text-[#5a5955] no-underline transition-colors duration-200 hover:text-gold">Videos</a></li>
-          <li class="mb-[9px]"><a href="#location" class="font-rally text-[.78rem] text-[#5a5955] no-underline transition-colors duration-200 hover:text-gold">Location</a></li>
-          <li class="mb-[9px]"><a href="#contact" class="font-rally text-[.78rem] text-[#5a5955] no-underline transition-colors duration-200 hover:text-gold">Contact</a></li>
+        <h5 class="orbitron text-xs font-bold text-white mb-4 tracking-widest">AYUDA</h5>
+        <ul class="space-y-2 text-xs" style="color:var(--text-secondary);opacity:.6">
+          <li><a href="#">Mi Cuenta</a></li><li><a href="#">Mis Pedidos</a></li>
+          <li><a href="#">Devoluciones</a></li><li><a href="#">Soporte</a></li>
         </ul>
+      </div>
+      <div>
+        <h5 class="orbitron text-xs font-bold text-white mb-4 tracking-widest">EMPRESA</h5>
+        <ul class="space-y-2 text-xs" style="color:var(--text-secondary);opacity:.6">
+          <li><a href="#">Sobre Nosotros</a></li><li><a href="#">Blog</a></li>
+          <li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="orbitron text-xs font-bold text-white mb-4 tracking-widest">NEWSLETTER</h5>
+        <p class="text-xs mb-3" style="color:var(--text-secondary);opacity:.5">Recibe ofertas exclusivas.</p>
+        <input type="email" placeholder="tu@email.com" style="width:100%;padding:8px 12px;background:var(--bg-card);color:var(--text-primary);border:1px solid var(--border-color);font-size:.73rem;outline:none;margin-bottom:8px">
+        <button style="width:100%;padding:8px;background:var(--accent-primary);color:#000;font-weight:700;font-size:.7rem;letter-spacing:.1em;cursor:pointer;font-family:'Orbitron',sans-serif">SUSCRIBIR</button>
       </div>
     </div>
-    
-    <div class="text-center py-[18px] font-rally text-[.68rem] text-[#32312e] tracking-[.08em]">© 2025 Luna Roja Digital — Only Barbering Academy</div>
+    <div style="border-top:1px solid var(--border-color);padding-top:20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+      <p style="font-size:.72rem;color:var(--text-secondary);opacity:.4">© 2025 TechStore. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-2">
+        <span style="font-size:.62rem;color:var(--text-secondary);opacity:.4;letter-spacing:.08em">PAGO SEGURO</span>
+        <div style="width:40px;height:26px;border-radius:4px;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center">
+          <svg viewBox="0 0 48 32" width="40" height="26"><path d="M21.055 21.932h-2.653l1.66-10.264h2.652l-1.659 10.264zm-4.56-10.264l-2.54 7.013-.298-1.513-.895-4.568s-.11-.932-1.266-.932H7.193l-.044.156s1.21.25 2.625.975l2.183 8.133h2.764l4.233-10.264h-2.459zm23.1 10.264h2.406l-2.098-10.264h-2.098c-.947 0-1.178.73-1.178.73l-3.965 9.534h2.764l.55-1.513h3.366l.253 1.513zm-2.922-3.591l1.385-3.788.77 3.788h-2.155zm-6.72-4.486l.374-2.187s-1.155-.437-2.353-.437c-1.298 0-4.384.562-4.384 3.306 0 2.588 3.625 2.62 3.625 3.98 0 1.358-3.25 1.108-4.318.25l-.386 2.25s1.165.562 2.949.562c1.782 0 4.47-.906 4.47-3.43 0-2.619-3.658-2.807-3.658-3.98 0-1.171 2.728-.999 3.68-.313z" fill="#1434CB"/></svg>
+        </div>
+        <div style="width:40px;height:26px;border-radius:4px;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center">
+          <svg viewBox="0 0 48 32" width="40" height="26"><circle cx="18" cy="16" r="8" fill="#EB001B"/><circle cx="30" cy="16" r="8" fill="#F79E1B"/><path d="M24 9.6a7.97 7.97 0 0 0-3 6.4c0 2.56 1.2 4.84 3 6.4a7.97 7.97 0 0 0 3-6.4c0-2.56-1.2-4.84-3-6.4z" fill="#FF5F00"/></svg>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
 
-<script src="script.js"></script>
-<script src="video.js"></script>
-<script src="team.js"></script>
-<script src="avatar.js"></script>
+    <!-- Scripts adicionales -->
+    <script defer src="scripts.js"></script>
+    <script defer src="avatar.js"></script>
+    
+    <!-- Script de correcciones centralizado -->
+    <script defer src="fixes.js"></script>
+
+    <!-- Funciones auxiliares para navegación (compatibles con fixES.js) -->
+    <script>
+        // Función scroll suave para secciones
+        function scrollToSection(selector) {
+            const el = document.querySelector(selector);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función global para navegación con filtro (usada por fixES.js)
+        function navigateWithFilter(url) {
+            if (url.includes('tienda.html')) {
+                window.location.href = url;
+            } else {
+                window.location.href = url;
+            }
+        }
+
+        // Exponer funciones globales para el carrito (fixES.js las usará)
+        window.openCart = function() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            if (drawer) drawer.classList.add('open');
+            if (overlay) overlay.classList.add('open');
+        };
+        window.closeCart = function() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            if (drawer) drawer.classList.remove('open');
+            if (overlay) overlay.classList.remove('open');
+        };
+    </script>
 </body>
 </html>
